@@ -267,7 +267,7 @@ function module:New(name)
 			tabbutton.AutoButtonColor = false
 
 			tabbutton.MouseEnter:Connect(function()
-				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(103, 103, 158)})
+				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(103, 158, 158)})
 			end)
 			tabbutton.MouseLeave:Connect(function()
 				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
@@ -337,7 +337,7 @@ function module:New(name)
                 local UICorner_3 = Instance.new("UICorner")
                 label.Name = name
                 label.Parent = ScrollingFrame
-                label.BackgroundColor3 = Color3.fromRGB(25, 139, 224)
+                label.BackgroundColor3 = Color3.fromRGB(28, 93, 152)
                 label.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 label.Size = UDim2.new(0, 385, 0, 39)
                 label.Font = Enum.Font.Roboto
