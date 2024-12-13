@@ -57,14 +57,14 @@ function module:New(name)
         local Main = Instance.new("Frame")
         Main.Name = "Main"
         Main.Parent = ScreenGui
-        Main.BackgroundColor3 = Color3.fromRGB(38, 45, 71)
+        Main.BackgroundColor3 = Color3.fromRGB(0, 43, 71)
         Main.BorderColor3 = Color3.fromRGB(100, 100, 100)
         Main.Position = UDim2.new(0.341675043, 0, 0.403705865, 0)
         Main.Size = UDim2.new(0, 602, 0, 403)
 	
         local UIStroke = Instance.new('UIStroke')
         UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        UIStroke.Color = Color3.fromRGB(102, 61, 255)
+        UIStroke.Color = Color3.fromRGB(62, 183, 255)
         UIStroke.LineJoinMode = Enum.LineJoinMode.Round
         UIStroke.Thickness = 2.5
         UIStroke.Transparency = 0
@@ -138,9 +138,9 @@ function module:New(name)
         tabbuttons.Name = "tab buttons"
         tabbuttons.Parent = Main
         tabbuttons.Active = true
-        tabbuttons.ScrollBarImageColor3 = Color3.fromRGB(69, 69, 107)
+        tabbuttons.ScrollBarImageColor3 = Color3.fromRGB(14, 114, 150)
         tabbuttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        tabbuttons.BackgroundColor3 = Color3.fromRGB(26, 32, 58)
+        tabbuttons.BackgroundColor3 = Color3.fromRGB(0, 33, 58)
         tabbuttons.BorderSizePixel = 0
         tabbuttons.Position = UDim2.new(0, 0, 0.0918114111, 0)
         tabbuttons.Size = UDim2.new(0, 182, 0, 320)
@@ -257,7 +257,7 @@ function module:New(name)
             local tabbutton = Instance.new("TextButton")
             tabbutton.Name = "tabbutton"
             tabbutton.Parent = tabbuttons
-            tabbutton.BackgroundColor3 = Color3.fromRGB(69, 69, 107)
+            tabbutton.BackgroundColor3 = Color3.fromRGB(0, 87, 107)
             tabbutton.Position = UDim2.new(0.0405405387, 0, 0.0399999991, 0)
             tabbutton.Size = UDim2.new(0, 149, 0, 39)
             tabbutton.Font = Enum.Font.Ubuntu
@@ -270,7 +270,7 @@ function module:New(name)
 				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(103, 103, 158)})
 			end)
 			tabbutton.MouseLeave:Connect(function()
-				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(69, 69, 107)})
+				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
 			end)
 
             local UICorner = Instance.new("UICorner")
@@ -291,7 +291,7 @@ function module:New(name)
             ScrollingFrame.Parent = Tab
             ScrollingFrame.Active = true
 			ScrollingFrame.Size = UDim2.new(0, 420, 0, 261)
-            ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(69, 69, 107)
+            ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(14, 114, 150)
             ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ScrollingFrame.BackgroundTransparency = 1.000
             ScrollingFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
@@ -337,7 +337,7 @@ function module:New(name)
                 local UICorner_3 = Instance.new("UICorner")
                 label.Name = name
                 label.Parent = ScrollingFrame
-                label.BackgroundColor3 = Color3.fromRGB(70, 70, 224)
+                label.BackgroundColor3 = Color3.fromRGB(25, 139, 224)
                 label.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 label.Size = UDim2.new(0, 385, 0, 39)
                 label.Font = Enum.Font.Roboto
@@ -358,7 +358,7 @@ function module:New(name)
 
                 SearchBar.Name = "SearchBar"
                 SearchBar.Parent = Tab
-                SearchBar.BackgroundColor3 = Color3.fromRGB(69, 69, 107)
+                SearchBar.BackgroundColor3 = Color3.fromRGB(0, 80, 138)
                 SearchBar.Position = UDim2.new(0,12,0,21) --UDim2.new(0.0309039894, 0, 0.0229007639, 0)
                 SearchBar.BackgroundTransparency = 0.5
                 SearchBar.Size = UDim2.new(0, 396, 0, 34)
@@ -401,7 +401,7 @@ function module:New(name)
 
                 button.Name = name
                 button.Parent = ScrollingFrame
-                button.BackgroundColor3 = Color3.fromRGB(69, 69, 107)
+                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
     
                 button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 button.Size = UDim2.new(0, 385, 0, 39)
@@ -438,11 +438,11 @@ function module:New(name)
 				button.MouseButton1Up:Connect(function()
 					if clicked then return end
 					if holding == true then holding = false end
-					tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(69, 69, 107)})
+					tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
 				end)
 
 				button.MouseLeave:Connect(function()
-					if holding and not clicked then tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(69, 69, 107)}) end
+					if holding and not clicked then tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)}) end
 				end)
 
                 button.MouseButton1Click:Connect(function() selected:Play() callback() end)
@@ -452,11 +452,11 @@ function module:New(name)
                     if clicked then
                         button.Text = desc
                         button.TextSize = 13.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(53, 53, 82)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(6, 64, 108)})
                     else 
                         button.Text = name
                         button.TextSize = 17.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(69, 69, 107)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
 
                     end
                 end)
@@ -467,7 +467,7 @@ function module:New(name)
 
                 button.Name = name
                 button.Parent = ScrollingFrame
-                button.BackgroundColor3 = Color3.fromRGB(69, 69, 107)
+                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
     
                 button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 button.Size = UDim2.new(0, 385, 0, 39)
@@ -501,11 +501,11 @@ function module:New(name)
                     if clicked then
                         button.Text = desc
                         button.TextSize = 13.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(53, 53, 82)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(0, 74, 113)})
                     else 
                         button.Text = name
                         button.TextSize = 17.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(69, 69, 107)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
                     end
                 end)
 
@@ -554,7 +554,7 @@ function module:New(name)
 
                 button.Name = name
                 button.Parent = ScrollingFrame
-                button.BackgroundColor3 = Color3.fromRGB(69, 69, 107)
+                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
     
                 button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 button.Size = UDim2.new(0, 385, 0, 39)
