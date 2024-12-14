@@ -452,11 +452,11 @@ function module:New(name)
                     if clicked then
                         button.Text = desc
                         button.TextSize = 13.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(6, 64, 108)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
                     else 
                         button.Text = name
                         button.TextSize = 17.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(6, 64, 108)})
 
                     end
                 end)
@@ -501,11 +501,11 @@ function module:New(name)
                     if clicked then
                         button.Text = desc
                         button.TextSize = 13.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(0, 74, 113)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
                     else 
                         button.Text = name
                         button.TextSize = 17.000
-						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(0, 74, 113)})
                     end
                 end)
 
