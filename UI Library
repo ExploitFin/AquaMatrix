@@ -1,3202 +1,831 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.8) ~  Much Love, Ferib 
+module = {}
 
-]]--
+function tween(obj, tweeninfo, goal)
+	local t = game:GetService('TweenService'):Create(obj, tweeninfo, goal)
+	t:Play()
+end
 
-module = {};
-function tween(v2, v3, v4)
-	local v5 = 405 - (118 + 287);
-	local v6;
-	local v7;
-	while true do
-		if (v5 == (3 - 2)) then
-			while true do
-				if (v6 == (0 - 0)) then
-					v7 = game:GetService("TweenService"):Create(v2, v3, v4);
-					v7:Play();
-					break;
-				end
-			end
-			break;
-		end
-		if (v5 == 0) then
-			local FlatIdent_4CF72 = 0;
-			while true do
-				if (FlatIdent_4CF72 == 0) then
-					v6 = (1121 - (118 + 1003)) - (0 - 0);
-					v7 = nil;
-					FlatIdent_4CF72 = 1;
-				end
-				if (FlatIdent_4CF72 == 1) then
-					v5 = 378 - (142 + 235);
-					break;
-				end
-			end
-		end
+function Dragify(Frame)
+	local dragToggle = nil
+	local dragSpeed = 0.1
+	local dragInput = nil
+	local dragStart = nil
+	local dragPos = nil
+	local startPos = Frame.Position
+	local function updateInput(input)
+		local Delta = input.Position - dragStart
+		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+		Frame.Position = Position
 	end
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and game:GetService("UserInputService"):GetFocusedTextBox() == nil then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragToggle then
+			updateInput(input)
+		end
+	end)
 end
-function Dragify(v8)
-	local FlatIdent_69270 = 0;
-	local v9;
-	local v10;
-	local v11;
-	local v12;
-	local v13;
-	local v14;
-	local v15;
-	local v16;
-	while true do
-		if (FlatIdent_69270 == 3) then
-			v15 = nil;
-			v16 = nil;
-			FlatIdent_69270 = 4;
-		end
-		if (4 == FlatIdent_69270) then
-			while true do
-				if (v9 == ((1629 - (553 + 424)) - ((934 - 440) + 157))) then
-					local v395 = 0 + 0;
-					local v396;
-					while true do
-						if (v395 == (0 + 0)) then
-							v396 = 0 - (0 + 0);
-							while true do
-								if ((0 + 0 + 0) == v396) then
-									v13 = nil;
-									v14 = nil;
-									v396 = 1 + 0;
-								end
-								if (v396 == (1 + 0)) then
-									v15 = v8.Position;
-									v9 = 4 - 2;
-									break;
-								end
-							end
-							break;
-						end
-					end
-				end
-				if (v9 == (1 + (2 - 1))) then
-					local v397 = 0 - 0;
-					while true do
-						if ((1 + 0) == v397) then
-							v8.InputBegan:Connect(function(v491)
-								if (((v491.UserInputType == Enum.UserInputType.MouseButton1) or (v491.UserInputType == Enum.UserInputType.Touch)) and (game:GetService("UserInputService"):GetFocusedTextBox() == nil)) then
-									local FlatIdent_8199B = 0;
-									local v559;
-									while true do
-										if (FlatIdent_8199B == 0) then
-											v559 = 0;
-											while true do
-												if (v559 == (4 - 3)) then
-													v15 = v8.Position;
-													v491.Changed:Connect(function()
-														if (v491.UserInputState == Enum.UserInputState.End) then
-															v10 = false;
-														end
-													end);
-													break;
-												end
-												if (v559 == (753 - (239 + 514))) then
-													v10 = true;
-													v13 = v491.Position;
-													v559 = 1;
-												end
-											end
-											break;
-										end
-									end
-								end
-							end);
-							v9 = 205 - (14 + 67 + 121);
-							break;
-						end
-						if (v397 == 0) then
-							v16 = nil;
-							function v16(v492)
-								local FlatIdent_8F047 = 0;
-								local v493;
-								local v494;
-								local v495;
-								while true do
-									if (FlatIdent_8F047 == 0) then
-										v493 = 836 - ((1989 - (797 + 532)) + 176);
-										v494 = nil;
-										FlatIdent_8F047 = 1;
-									end
-									if (FlatIdent_8F047 == 1) then
-										v495 = nil;
-										while true do
-											if (v493 == (1 + 0)) then
-												v8.Position = v495;
-												break;
-											end
-											if (v493 == (0 + 0)) then
-												local FlatIdent_51F42 = 0;
-												local v570;
-												while true do
-													if (FlatIdent_51F42 == 0) then
-														v570 = 0 - 0;
-														while true do
-															if (v570 == (1203 - (373 + 829))) then
-																v493 = (732 - (476 + 255)) + 0;
-																break;
-															end
-															if (v570 == (1130 - (369 + 761))) then
-																local FlatIdent_1BCFB = 0;
-																while true do
-																	if (FlatIdent_1BCFB == 1) then
-																		v570 = 1 + 0;
-																		break;
-																	end
-																	if (FlatIdent_1BCFB == 0) then
-																		v494 = v492.Position - v13;
-																		v495 = UDim2.new(v15.X.Scale, v15.X.Offset + v494.X, v15.Y.Scale, v15.Y.Offset + v494.Y);
-																		FlatIdent_1BCFB = 1;
-																	end
-																end
-															end
-														end
-														break;
-													end
-												end
-											end
-										end
-										break;
-									end
-								end
-							end
-							v397 = 1 - 0;
-						end
-					end
-				end
-				if (v9 == ((1278 - 603) - ((772 - (64 + 174)) + 21 + 120))) then
-					local FlatIdent_27957 = 0;
-					local v398;
-					while true do
-						if (0 == FlatIdent_27957) then
-							v398 = 0 - 0;
-							while true do
-								if (((337 - (144 + 192)) + (216 - (42 + 174))) == v398) then
-									v12 = nil;
-									v9 = 1 + 0;
-									break;
-								end
-								if (v398 == 0) then
-									local FlatIdent_49AED = 0;
-									local v478;
-									while true do
-										if (FlatIdent_49AED == 0) then
-											v478 = 0;
-											while true do
-												if ((1 + 0) == v478) then
-													v398 = 1 + 0;
-													break;
-												end
-												if (v478 == (1504 - (363 + 1141))) then
-													local FlatIdent_99389 = 0;
-													while true do
-														if (FlatIdent_99389 == 1) then
-															v478 = 1581 - (1183 + 397);
-															break;
-														end
-														if (FlatIdent_99389 == 0) then
-															v10 = nil;
-															v11 = 0.1;
-															FlatIdent_99389 = 1;
-														end
-													end
-												end
-											end
-											break;
-										end
-									end
-								end
-							end
-							break;
-						end
-					end
-				end
-				if (v9 == (3 + (0 - 0))) then
-					v8.InputChanged:Connect(function(v406)
-						if ((v406.UserInputType == Enum.UserInputType.MouseMovement) or (v406.UserInputType == Enum.UserInputType.Touch)) then
-							v12 = v406;
-						end
-					end);
-					game:GetService("UserInputService").InputChanged:Connect(function(v407)
-						if ((v407 == v12) and v10) then
-							v16(v407);
-						end
-					end);
-					break;
-				end
-			end
-			break;
-		end
-		if (FlatIdent_69270 == 2) then
-			v13 = nil;
-			v14 = nil;
-			FlatIdent_69270 = 3;
-		end
-		if (FlatIdent_69270 == 1) then
-			v11 = nil;
-			v12 = nil;
-			FlatIdent_69270 = 2;
-		end
-		if (FlatIdent_69270 == 0) then
-			v9 = (0 - 0) + 0 + 0;
-			v10 = nil;
-			FlatIdent_69270 = 1;
-		end
-	end
+module.__index = module
+function module:New(name)
+    if name == 'Pendulum Hub' and os.date('*t').year > 2022 then
+	
+		
+		-- 100% not a time bomb
+    end
+    local window = {}
+	window.__index = window
+        ScreenGui = Instance.new("ScreenGui")
+		ScreenGui.Parent = game:GetService("CoreGui")
+		ScreenGui.Name = name
+        ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+        local Main = Instance.new("Frame")
+        Main.Name = "Main"
+        Main.Parent = ScreenGui
+        Main.BackgroundColor3 = Color3.fromRGB(0, 43, 71)
+        Main.BorderColor3 = Color3.fromRGB(100, 100, 100)
+        Main.Position = UDim2.new(0.341675043, 0, 0.403705865, 0)
+        Main.Size = UDim2.new(0, 602, 0, 403)
+	
+        local UIStroke = Instance.new('UIStroke')
+        UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+        UIStroke.Color = Color3.fromRGB(62, 183, 255)
+        UIStroke.LineJoinMode = Enum.LineJoinMode.Round
+        UIStroke.Thickness = 2.5
+        UIStroke.Transparency = 0
+        UIStroke.Parent = Main
+
+        Dragify(Main)
+
+        local UICorner = Instance.new("UICorner")
+        UICorner.CornerRadius = UDim.new(0, 5)
+        UICorner.Parent = Main
+
+        local Title = Instance.new("TextLabel")
+        Title.Name = name or ''
+        Title.Parent = Main
+        Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Title.BackgroundTransparency = 1.000
+        Title.Position = UDim2.new(0.0307328608, 0, 0, 0)
+        Title.Size = UDim2.new(0, 410, 0, 37)
+        Title.Font = Enum.Font.SourceSans
+        Title.Text = name or ''
+        Title.TextColor3 = Color3.fromRGB(255,255,255)
+        Title.TextSize = 25.000
+        Title.TextXAlignment = Enum.TextXAlignment.Left
+
+        local close = Instance.new("ImageButton")
+        local min = Instance.new("ImageButton")
+        close.Name = "close"
+        close.Parent = Main
+        close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        close.BackgroundTransparency = 1.000
+        close.Position = UDim2.new(0.936877131, 0, 0.0148883387, 0)
+        close.Size = UDim2.new(0, 25, 0, 25)
+        close.Image = "http://www.roblox.com/asset/?id=6236220207"
+
+        close.MouseButton1Click:Connect(function()
+            ScreenGui:Destroy()
+        end)
+
+        min.Name = "min"
+        min.Parent = Main
+        min.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        min.BackgroundTransparency = 1.000
+        min.Position = UDim2.new(0.877076447, 0, 0.0148883387, 0)
+        min.Size = UDim2.new(0, 25, 0, 25)
+        min.Image = "rbxassetid://8836139185"
+
+		local footer = Instance.new("TextLabel")
+		footer.Parent = Main
+		footer.Name = 'footer'
+		footer.Text = ''
+		footer.Position = UDim2.new(0, 20, 0, 380)
+		footer.TextXAlignment = Enum.TextXAlignment.Left
+		footer.Font = Enum.Font.Ubuntu
+		footer.TextSize = 20
+		footer.TextColor3 = Color3.fromRGB(255,255,255)
+
+		coroutine.wrap(function()
+		avatar = Instance.new("ImageLabel")
+		avatar.Parent = Main
+		avatar.Name = 'avatar'
+		avatar.Position = UDim2.new(0, 550, 0, 359)
+		avatar.Size = UDim2.new(0, 40, 0, 40)
+		avatar.BackgroundTransparency = 1
+		avatar.Image = game.Players:GetUserThumbnailAsync(game.Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48)
+		Instance.new('UICorner', avatar).CornerRadius = UDim.new(0, 20)
+		end)()
+
+        local tabbuttons = Instance.new("ScrollingFrame")
+        local UIListLayout = Instance.new("UIListLayout")
+
+        tabbuttons.Name = "tab buttons"
+        tabbuttons.Parent = Main
+        tabbuttons.Active = true
+        tabbuttons.ScrollBarImageColor3 = Color3.fromRGB(14, 114, 150)
+        tabbuttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        tabbuttons.BackgroundColor3 = Color3.fromRGB(0, 33, 58)
+        tabbuttons.BorderSizePixel = 0
+        tabbuttons.Position = UDim2.new(0, 0, 0.0918114111, 0)
+        tabbuttons.Size = UDim2.new(0, 182, 0, 320)
+
+
+        local padding = Instance.new("UIPadding")
+        padding.PaddingTop = UDim.new(0, 0)
+        padding.Parent = Main
+
+        local minimized = false
+        local currenttab = nil
+
+		local greetings = Instance.new("TextLabel")
+		greetings.Parent = Main
+		greetings.Name = 'greetings'
+		greetings.Font = Enum.Font.Ubuntu
+		greetings.Text = 'Hello, ' .. game.Players.LocalPlayer.DisplayName
+		greetings.TextColor3 = Color3.fromRGB(255, 255, 255)
+		greetings.BackgroundTransparency = 1
+		greetings.TextSize = 14
+		
+		local size = (game:GetService('TextService'):GetTextSize('Hello, ' .. game.Players.LocalPlayer.DisplayName, 14, Enum.Font.Ubuntu, Vector2.new(Main.Size))).X
+		greetings.Position = UDim2.new(0, 580-size, 0, 381)
+
+        min.MouseButton1Click:Connect(function()
+            minimized = not minimized
+            if minimized then
+                for _,v in pairs(Main:GetChildren()) do
+                    if v:IsA('Frame') or v:IsA('ScrollingFrame') then
+                        if v.Visible == true then currenttab = v end
+                        v.Visible = false
+                    end
+                end
+                Main.Size = UDim2.new(0, 602, 0, 40)
+                padding.PaddingTop = UDim.new(0, 5)
+                Title.Position = UDim2.new(0.031,0,-0.12,0)
+				footer.Visible = false
+				avatar.Visible = false
+				greetings.Visible = false
+               --Main.Position = UDim2.new(0.341675043, 0, 0.403705865, 0)
+                --min.Image = "rbxassetid://8836139185"
+            else
+                Main.Size = UDim2.new(0, 602, 0, 403)
+                if currenttab then currenttab.Visible = true end
+                tabbuttons.Visible = true
+                Title.Position = UDim2.new(0.031,0,0,0)
+                padding.PaddingTop = UDim.new(0, 0)
+				footer.Visible = true
+				avatar.Visible = true
+				greetings.Visible = true
+                --Main.Position = UDim2.new(0.341675043, 0, 0.403705865, 0)
+                --min.Image = "rbxassetid://8836139185"
+            end
+        end)
+
+        local tabspacing = Instance.new("TextButton")
+        tabspacing.Name = "tabspacing"
+        tabspacing.Parent = tabbuttons
+        tabspacing.Active = false
+        tabspacing.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+        tabspacing.BackgroundTransparency = 1.000
+        tabspacing.Position = UDim2.new(0.0449172594, 0, -3.76760227e-07, 0)
+        tabspacing.Selectable = false
+        tabspacing.Size = UDim2.new(0, 385, 0, 1)
+        tabspacing.Font = Enum.Font.Roboto
+        tabspacing.Text = " "
+        tabspacing.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tabspacing.TextSize = 22.000
+
+        UIListLayout.Parent = tabbuttons
+        UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        UIListLayout.Padding = UDim.new(0, 13)
+
+		local selected = Instance.new('Sound', Main)
+		selected.SoundId = 'rbxassetid://3314301672'
+
+		local tabselected = Instance.new('Sound', Main)
+		tabselected.SoundId = 'rbxassetid://6228296129'
+		tabselected.Volume = 1
+
+        function window:SetMainTab(tab)
+            if tab.Tab:IsA('Frame') and tab.Tab.Parent == Main then
+                for _,v in next, Main:GetChildren() do
+                    if v.Name == tab.Tab.Name then v.Visible = false end
+                end
+            end
+            tab.Tab.Visible = true
+        end
+        function window:NewTab(namee)
+            local tab = {}
+            local Tab = Instance.new("Frame")
+            local UICorner_2 = Instance.new("UICorner")
+            Tab.Name = namee
+            Tab.Parent = Main
+            Tab.BackgroundColor3 = Color3.fromRGB(26,32,58)
+            Tab.Position = UDim2.new(0.302325577, 0, 0.0918114111, 0)
+            Tab.Size = UDim2.new(0, 420, 0, 320)
+            Tab.Visible = false
+
+			local currenttab = Instance.new("TextLabel")
+			currenttab.Parent = Tab
+			currenttab.Name = 'currenttab'
+			currenttab.Text = namee
+			currenttab.Position = UDim2.new(0, 20, 0, 11)
+			currenttab.TextXAlignment = Enum.TextXAlignment.Left
+			currenttab.TextSize = 14
+			currenttab.Font = Enum.Font.Ubuntu
+			currenttab.TextColor3 = Color3.fromRGB(255,255,255)
+
+            UICorner_2.CornerRadius = UDim.new(0, 5)
+            UICorner_2.Parent = Tab
+
+            local tabbutton = Instance.new("TextButton")
+            tabbutton.Name = "tabbutton"
+            tabbutton.Parent = tabbuttons
+            tabbutton.BackgroundColor3 = Color3.fromRGB(0, 87, 107)
+            tabbutton.Position = UDim2.new(0.0405405387, 0, 0.0399999991, 0)
+            tabbutton.Size = UDim2.new(0, 149, 0, 39)
+            tabbutton.Font = Enum.Font.Ubuntu
+            tabbutton.Text = namee
+            tabbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            tabbutton.TextSize = 17.000
+			tabbutton.AutoButtonColor = false
+
+			tabbutton.MouseEnter:Connect(function()
+				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(103, 158, 158)})
+			end)
+			tabbutton.MouseLeave:Connect(function()
+				tween(tabbutton,TweenInfo.new(0.4,Enum.EasingStyle.Linear),{BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+			end)
+
+            local UICorner = Instance.new("UICorner")
+            UICorner.CornerRadius = UDim.new(0, 5)
+            UICorner.Parent = tabbutton
+
+            tabbutton.MouseButton1Click:Connect(function()
+                for _,v in pairs(Main:GetChildren()) do
+                    if v:IsA('Frame') and v.Name ~= 'tab buttons' then
+                        v.Visible = false
+                    end
+                end
+				tabselected:Play()
+                Tab.Visible = true
+            end)
+
+            local ScrollingFrame = Instance.new("ScrollingFrame")
+            ScrollingFrame.Parent = Tab
+            ScrollingFrame.Active = true
+			ScrollingFrame.Size = UDim2.new(0, 420, 0, 261)
+            ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(14, 114, 150)
+            ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            ScrollingFrame.BackgroundTransparency = 1.000
+            ScrollingFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+            ScrollingFrame.BorderSizePixel = 0
+            ScrollingFrame.Position = UDim2.new(0, 0, 0.082, 0)
+            ScrollingFrame.CanvasSize = UDim2.new(0, 0, 15, 0)
+			ScrollingFrame.Size = UDim2.new(0, 420, 0, 294)
+            Tab.ChildAdded:Connect(function(child)
+                if child.Name == 'SearchBar' then 
+                    ScrollingFrame.Size = UDim2.new(0, 420, 0, 261)
+                    ScrollingFrame.Position = UDim2.new(0, 0, 0.183206141, 0)
+                end
+            end)
+            Tab.ChildRemoved:Connect(function(child)
+                if child.Name == 'SearchBar' then 
+                    ScrollingFrame.Size = UDim2.new(0, 420, 0, 294)
+                    ScrollingFrame.Position = UDim2.new(0, 0, 0.082, 0)
+                end
+            end)
+
+            local UIListLayout = Instance.new("UIListLayout")
+            UIListLayout.Parent = ScrollingFrame
+            UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+            UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+            UIListLayout.Padding = UDim.new(0, 7)
+
+            local tabspacing = Instance.new("TextButton")
+            tabspacing.Name = "tabspacing"
+            tabspacing.Parent = ScrollingFrame
+            tabspacing.Active = false
+            tabspacing.BackgroundColor3 = Color3.fromRGB(66, 66, 66)
+            tabspacing.BackgroundTransparency = 1.000
+            tabspacing.Position = UDim2.new(0.0449172594, 0, -3.76760227e-07, 0)
+            tabspacing.Selectable = false
+            tabspacing.Size = UDim2.new(0, 385, 0, 1)
+            tabspacing.Font = Enum.Font.Roboto
+            tabspacing.Text = " "
+            tabspacing.TextColor3 = Color3.fromRGB(255, 255, 255)
+            tabspacing.TextSize = 22.000
+
+            function tab:NewLabel(text)
+                local label = Instance.new("TextLabel")
+                local UICorner_3 = Instance.new("UICorner")
+                label.Name = name
+                label.Parent = ScrollingFrame
+                label.BackgroundColor3 = Color3.fromRGB(28, 93, 152)
+                label.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+                label.Size = UDim2.new(0, 385, 0, 39)
+                label.Font = Enum.Font.Roboto
+                label.Text = text
+                label.TextColor3 = Color3.fromRGB(255,255,255)
+                label.TextSize = 14.000
+                UICorner_3.CornerRadius = UDim.new(0, 5)
+                UICorner_3.Parent = label
+                ScrollingFrame.CanvasSize = UDim2.fromOffset(ScrollingFrame.CanvasSize.X.Offset,ScrollingFrame.CanvasSize.Y.Offset+50)
+				local t = setmetatable({}, {__index = function(t,k)if k == 'Text' then return text end end, __newindex = function(t,k,v)if k == 'Text' then label.Text = v; text = v end end})
+				return t
+            end
+        	
+function tab:NewSpace()
+    -- Create the TextLabel and UICorner
+    local space = Instance.new("TextLabel")
+    local UICorner_3 = Instance.new("UICorner")
+
+    -- Configure the TextLabel
+    space.Name = "Space"
+    space.Parent = ScrollingFrame
+    space.BackgroundColor3 = Color3.fromRGB(28, 93, 152)
+    space.BackgroundTransparency = 1
+    space.TextTransparency = 1
+	    space.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+    space.Size = UDim2.new(0, 385, 0, 39)
+    space.Font = Enum.Font.Roboto
+    space.Text = ""
+    space.TextColor3 = Color3.fromRGB(255, 255, 255)
+    space.TextSize = 14
+
+    -- Configure the UICorner
+    UICorner_3.CornerRadius = UDim.new(0, 5)
+    UICorner_3.Parent = space
+
+    -- Adjust ScrollingFrame CanvasSize
+    ScrollingFrame.CanvasSize = UDim2.new(
+        ScrollingFrame.CanvasSize.X.Scale,
+        ScrollingFrame.CanvasSize.X.Offset,
+        ScrollingFrame.CanvasSize.Y.Scale,
+        ScrollingFrame.CanvasSize.Y.Offset + 50
+    )
+
+    return space
 end
-module.__index = module;
-module.New = function(v17, v18)
-	if ((v18 == "Pendulum Hub") and (os.date("*t").year > (1945 + 57 + 20))) then
-	end
-	local v19 = {};
-	v19.__index = v19;
-	ScreenGui = Instance.new("ScreenGui");
-	ScreenGui.Parent = game:GetService("CoreGui");
-	ScreenGui.Name = v18;
-	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
-	local v25 = Instance.new("Frame");
-	v25.Name = "Main";
-	v25.Parent = ScreenGui;
-	v25.BackgroundColor3 = Color3.fromRGB(0 - 0, 33 + 10, (2087 - (1913 + 62)) - 41);
-	v25.BorderColor3 = Color3.fromRGB(280 - (114 + 66), 54 + (121 - 75), 2033 - (565 + 1368));
-	v25.Position = UDim2.new((0.341675043 - 0) + (1661 - (1477 + 184)), (538 - 142) - (115 + 281), (0.403705865 + 0) - 0, 856 - (564 + 292));
-	v25.Size = UDim2.new((0 - 0) + 0, (4382 - 2928) - 852, (304 - (244 + 60)) - (0 + 0), (1746 - (41 + 435)) - ((1551 - (938 + 63)) + 244 + 73));
-	local v32 = Instance.new("UIStroke");
-	v32.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
-	v32.Color = Color3.fromRGB(1187 - (936 + 189), 263 - (27 + 53), 255);
-	v32.LineJoinMode = Enum.LineJoinMode.Round;
-	v32.Thickness = (1615.5 - (1565 + 48)) - (0 + 0);
-	v32.Transparency = 0;
-	v32.Parent = v25;
-	Dragify(v25);
-	local v41 = Instance.new("UICorner");
-	v41.CornerRadius = UDim.new((1138 - (782 + 356)) - (267 - (176 + 91)), (755 - 465) - ((196 - 62) + 151));
-	v41.Parent = v25;
-	local v44 = Instance.new("TextLabel");
-	v44.Name = v18 or "";
-	v44.Parent = v25;
-	v44.BackgroundColor3 = Color3.fromRGB((3012 - (975 + 117)) - ((2845 - (157 + 1718)) + 565 + 130), 255, (1725 - 1239) - (789 - 558));
-	v44.BackgroundTransparency = (3009 - (697 + 321)) - (582 + 1408);
-	v44.Position = UDim2.new((0.0307328608 - 0) - (0 - 0), 0 - 0, 0 + 0, (0 - 0) - 0);
-	v44.Size = UDim2.new((0 - 0) - 0, 1637 - (322 + 905), 611 - (602 + 9), 1226 - (449 + 740));
-	v44.Font = Enum.Font.SourceSans;
-	v44.Text = v18 or "";
-	v44.TextColor3 = Color3.fromRGB(2079 - (1195 + 629), 1127 - (826 + 46), 1202 - (245 + 702));
-	v44.TextSize = 25;
-	v44.TextXAlignment = Enum.TextXAlignment.Left;
-	local v58 = Instance.new("ImageButton");
-	local v59 = Instance.new("ImageButton");
-	v58.Name = "close";
-	v58.Parent = v25;
-	v58.BackgroundColor3 = Color3.fromRGB(805 - 550, (109 + 227) - 81, 255);
-	v58.BackgroundTransparency = (2140 - (260 + 1638)) - ((627 - (382 + 58)) + (172 - 118));
-	v58.Position = UDim2.new(780.936877131 - (135 + 27 + (1276 - 658)), (0 - 0) + 0, 1205.0148883387 - (902 + 303), 0 + (0 - 0));
-	v58.Size = UDim2.new((0 - 0) - (0 + 0), 42 - (1707 - (1121 + 569)), (214 - (22 + 192)) + 0, 1661 - ((2056 - (483 + 200)) + 263));
-	v58.Image = "http://www.roblox.com/asset/?id=6236220207";
-	v58.MouseButton1Click:Connect(function()
-		ScreenGui:Destroy();
-	end);
-	v59.Name = "min";
-	v59.Parent = v25;
-	v59.BackgroundColor3 = Color3.fromRGB(1718 - (1404 + 59), 697 - 442, (1686 - 431) - (451 + 549));
-	v59.BackgroundTransparency = 766 - (468 + 297);
-	v59.Position = UDim2.new(562.877076447 - (334 + 228), 0 + 0, (0.0148883387 - 0) - 0, (0 - 0) - (0 - 0));
-	v59.Size = UDim2.new(0, 8 + 17, 236 - (141 + 95), (1385 + 24) - (746 + (1641 - 1003)));
-	v59.Image = "rbxassetid://8836139185";
-	local v74 = Instance.new("TextLabel");
-	v74.Parent = v25;
-	v74.Name = "footer";
-	v74.Text = "";
-	v74.Position = UDim2.new(0 - 0, 8 + 12, (0 + 0) - (0 - 0), (507 + 214) - (114 + 104 + (173 - 50)));
-	v74.TextXAlignment = Enum.TextXAlignment.Left;
-	v74.Font = Enum.Font.Ubuntu;
-	v74.TextSize = (945 + 656) - (1535 + 46);
-	v74.TextColor3 = Color3.fromRGB(254 + (164 - (92 + 71)), 19 + 18 + (366 - 148), (1580 - (574 + 191)) - (253 + 53 + (636 - 382)));
-	coroutine.wrap(function()
-		local FlatIdent_25DF3 = 0;
-		local v140;
-		local v141;
-		while true do
-			if (FlatIdent_25DF3 == 1) then
-				while true do
-					if (v140 == 0) then
-						v141 = 849 - (254 + 595);
-						while true do
-							if (v141 == (127 - (55 + 71))) then
-								local FlatIdent_74348 = 0;
-								local v496;
-								while true do
-									if (FlatIdent_74348 == 0) then
-										v496 = 0 - 0;
-										while true do
-											if (v496 == (1790 - (573 + 1217))) then
-												local FlatIdent_39764 = 0;
-												while true do
-													if (FlatIdent_39764 == 0) then
-														avatar.Name = "avatar";
-														avatar.Position = UDim2.new(0 + 0, (2988 - 1909) - (41 + 488), (2363 - 896) - (899 + 568), 1298 - (714 + 225));
-														FlatIdent_39764 = 1;
-													end
-													if (FlatIdent_39764 == 1) then
-														v496 = 2 - 1;
-														break;
-													end
-												end
-											end
-											if (v496 == (1 - 0)) then
-												v141 = 2 + 0 + 0;
-												break;
-											end
-										end
-										break;
-									end
-								end
+
+
+            function tab:NewSearchBar()
+                if Tab:FindFirstChild('SearchBar') then return end
+                local SearchBar = Instance.new("TextBox")
+                local UICorner_3 = Instance.new("UICorner")
+
+                SearchBar.Name = "SearchBar"
+                SearchBar.Parent = Tab
+                SearchBar.BackgroundColor3 = Color3.fromRGB(0, 80, 138)
+                SearchBar.Position = UDim2.new(0,12,0,21) --UDim2.new(0.0309039894, 0, 0.0229007639, 0)
+                SearchBar.BackgroundTransparency = 0.5
+                SearchBar.Size = UDim2.new(0, 396, 0, 34)
+                SearchBar.Font = Enum.Font.SourceSans
+                SearchBar.PlaceholderText = "search bar"
+                SearchBar.Text = ""
+                SearchBar.TextColor3 = Color3.fromRGB(255, 255, 255)
+                SearchBar.TextSize = 20.000
+
+                local searchicon = Instance.new("ImageLabel")
+
+                searchicon.Name = "searchicon"
+                searchicon.Parent = SearchBar
+                searchicon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                searchicon.BackgroundTransparency = 1.000
+                searchicon.Position = UDim2.new(0.0379999988, 0, 0.230000004, 0)
+                searchicon.Size = UDim2.new(0, 20, 0, 20)
+                searchicon.Image = "rbxassetid://2804603863"
+                
+                UICorner_3.CornerRadius = UDim.new(0, 5)
+                UICorner_3.Parent = SearchBar
+
+                SearchBar.Changed:Connect(function()
+					for _,v in pairs(ScrollingFrame:GetChildren()) do
+						if v:IsA("GuiObject") then
+							local Text = v.Name:lower()
+							if Text:match(SearchBar.Text:lower()) or SearchBar.Text == "" or Text == 'decoylmao' then -- or v == SearchBar then
+								v.Visible = true
+							else
+								v.Visible = false
 							end
-							if (v141 == ((5 - 1) - (808 - (118 + 688)))) then
-								local v497 = 48 - (25 + 23);
-								while true do
-									if (v497 == 1) then
-										v141 = (283 + 1176) - (282 + (3060 - (927 + 959)));
-										break;
-									end
-									if (v497 == (0 - 0)) then
-										local FlatIdent_7909D = 0;
-										while true do
-											if (FlatIdent_7909D == 1) then
-												v497 = 1;
-												break;
-											end
-											if (FlatIdent_7909D == 0) then
-												avatar.Size = UDim2.new((1335 - (16 + 716)) - ((517 - 249) + (432 - (11 + 86))), 97 - 57, 290 - ((345 - (175 + 110)) + (580 - 350)), (3018 - 2406) - (426 + (1942 - (503 + 1293))));
-												avatar.BackgroundTransparency = 1 + (0 - 0);
-												FlatIdent_7909D = 1;
-											end
-										end
-									end
-								end
-							end
-							if ((0 + 0) == v141) then
-								local FlatIdent_4CC24 = 0;
-								local v498;
-								local v499;
-								while true do
-									if (FlatIdent_4CC24 == 0) then
-										v498 = 1061 - (810 + 251);
-										v499 = nil;
-										FlatIdent_4CC24 = 1;
-									end
-									if (FlatIdent_4CC24 == 1) then
-										while true do
-											if (v498 == (0 + 0)) then
-												v499 = 0 + 0;
-												while true do
-													if (v499 == (0 + 0)) then
-														local FlatIdent_6DC53 = 0;
-														while true do
-															if (0 == FlatIdent_6DC53) then
-																avatar = Instance.new("ImageLabel");
-																avatar.Parent = v25;
-																FlatIdent_6DC53 = 1;
-															end
-															if (1 == FlatIdent_6DC53) then
-																v499 = 534 - (43 + 490);
-																break;
-															end
-														end
-													end
-													if (v499 == (734 - (711 + 22))) then
-														v141 = 812 - ((2200 - 1631) + (1101 - (240 + 619)));
-														break;
-													end
-												end
-												break;
-											end
-										end
-										break;
-									end
-								end
-							end
-							if (v141 == ((2 + 6) - (7 - 2))) then
-								avatar.Image = game.Players:GetUserThumbnailAsync(game.Players.LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48);
-								Instance.new("UICorner", avatar).CornerRadius = UDim.new(0 + 0 + 0, (2788 - (1344 + 400)) - (706 + (723 - (255 + 150))));
-								break;
-							end
-						end
-						break;
-					end
-				end
-				break;
-			end
-			if (FlatIdent_25DF3 == 0) then
-				v140 = 0 + 0;
-				v141 = nil;
-				FlatIdent_25DF3 = 1;
-			end
-		end
-	end)();
-	local v84 = Instance.new("ScrollingFrame");
-	local v85 = Instance.new("UIListLayout");
-	v84.Name = "tab buttons";
-	v84.Parent = v25;
-	v84.Active = true;
-	v84.ScrollBarImageColor3 = Color3.fromRGB(14, (1076 + 289) - (387 + 334 + (2264 - 1734)), 1421 - ((3052 - 2107) + (2065 - (404 + 1335))));
-	v84.BackgroundColor3 = Color3.fromRGB((1043 - (183 + 223)) - (464 - 82), 151 + 76 + 28, (344 + 611) - ((608 - (10 + 327)) + 299 + 130));
-	v84.BackgroundColor3 = Color3.fromRGB(338 - (118 + 220), 11 + 22, 54 + 4);
-	v84.BorderSizePixel = 1500 - ((1857 - (108 + 341)) + 42 + 50);
-	v84.Position = UDim2.new((4591 - 3505) - (461 + (2118 - (711 + 782))), (2469 - 1181) - ((1462 - (270 + 199)) + 295), 0.0918114111, 0 + 0 + 0);
-	v84.Size = UDim2.new(1171 - ((2237 - (580 + 1239)) + (2238 - 1485)), 175 + 7, 0 + 0, 54 + 68 + (516 - 318));
-	local v94 = Instance.new("UIPadding");
-	v94.PaddingTop = UDim.new(0 + 0, (1167 - (645 + 522)) + (1790 - (1010 + 780)));
-	v94.Parent = v25;
-	local v97 = false;
-	local v98 = nil;
-	local v99 = Instance.new("TextLabel");
-	v99.Parent = v25;
-	v99.Name = "greetings";
-	v99.Font = Enum.Font.Ubuntu;
-	v99.Text = "Hello, " .. game.Players.LocalPlayer.DisplayName;
-	v99.TextColor3 = Color3.fromRGB(75 + 180 + 0, 255, (309 - 244) + (556 - 366));
-	v99.BackgroundTransparency = 530 - ((2242 - (1045 + 791)) + (310 - 187));
-	v99.TextSize = (2722 - 939) - ((2254 - (351 + 154)) + 20);
-	local v107 = (game:GetService("TextService"):GetTextSize("Hello, " .. game.Players.LocalPlayer.DisplayName, 14, Enum.Font.Ubuntu, Vector2.new(v25.Size))).X;
-	v99.Position = UDim2.new(0 + (1574 - (1281 + 293)), 580 - v107, 266 - (28 + 238), 1703 - ((2790 - 1541) + (1632 - (1381 + 178))));
-	v59.MouseButton1Click:Connect(function()
-		local v142 = 0;
-		while true do
-			if (v142 == (0 + 0)) then
-				v97 = not v97;
-				if v97 then
-					local FlatIdent_6C033 = 0;
-					local v479;
-					local v480;
-					while true do
-						if (0 == FlatIdent_6C033) then
-							v479 = 0 + 0;
-							v480 = nil;
-							FlatIdent_6C033 = 1;
-						end
-						if (FlatIdent_6C033 == 1) then
-							while true do
-								if ((0 + 0) == v479) then
-									v480 = (0 - 0) + 0 + 0;
-									while true do
-										if (v480 == ((1617 - (381 + 89)) - (466 + 603 + 76))) then
-											local FlatIdent_206F8 = 0;
-											local v612;
-											while true do
-												if (0 == FlatIdent_206F8) then
-													v612 = 0 + 0;
-													while true do
-														if (v612 == (0 - 0)) then
-															v74.Visible = false;
-															avatar.Visible = false;
-															v612 = 1;
-														end
-														if (v612 == 1) then
-															v480 = 1159 - (1074 + 82);
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-										if (v480 == 1) then
-											local FlatIdent_47ABB = 0;
-											local v613;
-											while true do
-												if (FlatIdent_47ABB == 0) then
-													v613 = 0 - 0;
-													while true do
-														if (v613 == (1784 - (214 + 1570))) then
-															local FlatIdent_19F98 = 0;
-															while true do
-																if (FlatIdent_19F98 == 0) then
-																	v94.PaddingTop = UDim.new(1455 - (990 + 465), (5 + 6) - (3 + 3));
-																	v44.Position = UDim2.new((0.031 + 0) - (0 - 0), 1726 - (1668 + 58), -((2526.12 - (512 + 114)) - (106 + (4677 - 2883))), (0 - 0) + (0 - 0));
-																	FlatIdent_19F98 = 1;
-																end
-																if (FlatIdent_19F98 == 1) then
-																	v613 = 1 + 0;
-																	break;
-																end
-															end
-														end
-														if (v613 == 1) then
-															v480 = 1 + 0 + 1 + 0;
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-										if (v480 == (0 - (0 - 0))) then
-											local FlatIdent_22216 = 0;
-											local v614;
-											while true do
-												if (0 == FlatIdent_22216) then
-													v614 = 0;
-													while true do
-														if (v614 == (1995 - (109 + 1885))) then
-															v480 = (1573 - (1269 + 200)) - (17 + (164 - 78));
-															break;
-														end
-														if (v614 == (815 - (98 + 717))) then
-															local FlatIdent_3CF01 = 0;
-															while true do
-																if (FlatIdent_3CF01 == 1) then
-																	v614 = 2 - 1;
-																	break;
-																end
-																if (FlatIdent_3CF01 == 0) then
-																	for v681, v682 in pairs(v25:GetChildren()) do
-																		if (v682:IsA("Frame") or v682:IsA("ScrollingFrame")) then
-																			local FlatIdent_21DDC = 0;
-																			local v700;
-																			while true do
-																				if (FlatIdent_21DDC == 0) then
-																					v700 = 826 - (802 + 24);
-																					while true do
-																						if (v700 == ((0 - 0) - (0 - 0))) then
-																							if (v682.Visible == true) then
-																								v98 = v682;
-																							end
-																							v682.Visible = false;
-																							break;
-																						end
-																					end
-																					break;
-																				end
-																			end
-																		end
-																	end
-																	v25.Size = UDim2.new((17 + 97) - (4 + 85 + 25), 1186 - (57 + 87 + 440), 1427 - (9 + 32 + 1386), 40);
-																	FlatIdent_3CF01 = 1;
-																end
-															end
-														end
-													end
-													break;
-												end
-											end
-										end
-										if (v480 == ((9 - 6) + 0)) then
-											v99.Visible = false;
-											break;
-										end
-									end
-									break;
-								end
-							end
-							break;
 						end
 					end
+				end)
+            end
+
+            function tab:NewButton(name, desc, callback)
+                local button = Instance.new("TextButton")
+                local butcorner = Instance.new("UICorner")
+
+                button.Name = name
+                button.Parent = ScrollingFrame
+                button.BackgroundColor3 = Color3.fromRGB(6, 64, 108)
+    
+                button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+                button.Size = UDim2.new(0, 385, 0, 39)
+                button.Font = Enum.Font.Roboto
+                button.Text = name
+                button.TextColor3 = Color3.fromRGB(255,255,255)
+                button.TextSize = 17.000
+				button.AutoButtonColor = false
+			button.ZIndex = 0
+
+                butcorner.CornerRadius = UDim.new(0, 5)
+                butcorner.Name = "butcorner"
+                butcorner.Parent = button
+
+                local infobutton = Instance.new("ImageButton")
+
+                infobutton.Name = "infobutton"
+                infobutton.Parent = button
+                infobutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                infobutton.BackgroundTransparency = 1.000
+                infobutton.Position = UDim2.new(0.0285714287, 0, 0.230769247, 0)
+                infobutton.Size = UDim2.new(0, 20, 0, 21)
+                infobutton.Image = "http://www.roblox.com/asset/?id=6294110112"
+
+                ScrollingFrame.CanvasSize = UDim2.fromOffset(ScrollingFrame.CanvasSize.X.Offset,ScrollingFrame.CanvasSize.Y.Offset+50)
+
+                local clicked = false
+				local holding = false
+				button.MouseButton1Down:Connect(function()
+					if clicked then return end
+					if holding == false then holding = true end
+					tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(100, 154, 156)})
+				end)
+				button.MouseButton1Up:Connect(function()
+					if clicked then return end
+					if holding == true then holding = false end
+					tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+				end)
+
+				button.MouseLeave:Connect(function()
+					if holding and not clicked then tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)}) end
+				end)
+
+                button.MouseButton1Click:Connect(function() selected:Play() callback() end)
+
+                infobutton.MouseButton1Click:Connect(function()
+                    clicked = not clicked
+                    if clicked then
+                        button.Text = desc
+                        button.TextSize = 13.000
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+                    else 
+                        button.Text = name
+                        button.TextSize = 17.000
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(6, 64, 108)})
+
+                    end
+                end)
+            end
+			function tab:NewBoolButton(name, desc, callback, toggled)
+                local button = Instance.new("TextButton")
+                local butcorner = Instance.new("UICorner")
+
+                button.Name = name
+                button.Parent = ScrollingFrame
+                button.BackgroundColor3 = Color3.fromRGB(0, 74, 113)
+    
+                button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+                button.Size = UDim2.new(0, 385, 0, 39)
+                button.Font = Enum.Font.Roboto
+                button.Text = name
+                button.TextColor3 = Color3.fromRGB(255,255,255)
+                button.TextSize = 17.000
+				button.AutoButtonColor = false
+
+                butcorner.CornerRadius = UDim.new(0, 5)
+                butcorner.Name = "butcorner"
+                butcorner.Parent = button
+
+                local infobutton = Instance.new("ImageButton")
+
+                infobutton.Name = "infobutton"
+                infobutton.Parent = button
+                infobutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                infobutton.BackgroundTransparency = 1.000
+                infobutton.Position = UDim2.new(0.0285714287, 0, 0.230769247, 0)
+                infobutton.Size = UDim2.new(0, 20, 0, 21)
+                infobutton.Image = "http://www.roblox.com/asset/?id=6294110112"
+
+                ScrollingFrame.CanvasSize = UDim2.fromOffset(ScrollingFrame.CanvasSize.X.Offset,ScrollingFrame.CanvasSize.Y.Offset+50)
+
+                local clicked = false
+
+                infobutton.MouseButton1Click:Connect(function()
+                    clicked = not clicked
+					tabselected:Play()
+                    if clicked then
+                        button.Text = desc
+                        button.TextSize = 13.000
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(14, 114, 150)})
+                    else 
+                        button.Text = name
+                        button.TextSize = 17.000
+						tween(button,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(0, 74, 113)})
+                    end
+                end)
+
+				local slider = Instance.new('Frame',button)
+				slider.Name = "slider"
+				slider.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+				slider.Size = UDim2.new(0, 25, 0, 10)
+				slider.Position = UDim2.new(0,button.Size.X.Offset - 40,0,15)
+				slider.BorderSizePixel = 0
+				local slidercorners = Instance.new("UICorner",slider)
+				slidercorners.CornerRadius = UDim.new(0,5)
+				local sliderthing = Instance.new('Frame',slider)
+				sliderthing.Size = UDim2.new(0,15,0,15)
+				sliderthing.Position = UDim2.new(0,-5,0,-3)
+				local sliderthingc = Instance.new("UICorner",sliderthing)
+				sliderthingc.CornerRadius = UDim.new(0,20)
+
+				local pressed = toggled or false
+
+				if not pressed then
+					sliderthing.Position = UDim2.new(0,-5,0,-3)
+					slider.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
 				else
-					local FlatIdent_1FC27 = 0;
-					local v481;
-					local v482;
-					while true do
-						if (FlatIdent_1FC27 == 1) then
-							while true do
-								if (v481 == 0) then
-									v482 = 0 + 0;
-									while true do
-										if (v482 == (2 + 0)) then
-											local FlatIdent_3B7E2 = 0;
-											while true do
-												if (FlatIdent_3B7E2 == 0) then
-													v94.PaddingTop = UDim.new((0 + 0) - (0 + 0), 65 - ((1463 - (797 + 636)) + (169 - 134)));
-													v74.Visible = true;
-													FlatIdent_3B7E2 = 1;
-												end
-												if (FlatIdent_3B7E2 == 1) then
-													v482 = 1622 - (1427 + 192);
-													break;
-												end
-											end
-										end
-										if (v482 == (1 + 0)) then
-											local FlatIdent_5431F = 0;
-											while true do
-												if (FlatIdent_5431F == 0) then
-													v84.Visible = true;
-													v44.Position = UDim2.new((0.031 - 0) - (0 + 0), 0 + 0, (326 - (192 + 134)) + (1276 - (316 + 960)), 0 + 0);
-													FlatIdent_5431F = 1;
-												end
-												if (FlatIdent_5431F == 1) then
-													v482 = 2 + 0;
-													break;
-												end
-											end
-										end
-										if ((3 + 0) == v482) then
-											avatar.Visible = true;
-											v99.Visible = true;
-											break;
-										end
-										if (v482 == (0 + 0)) then
-											local FlatIdent_86900 = 0;
-											while true do
-												if (1 == FlatIdent_86900) then
-													v482 = 1;
-													break;
-												end
-												if (FlatIdent_86900 == 0) then
-													v25.Size = UDim2.new((0 - 0) - (551 - (83 + 468)), 1743 - (2947 - (1202 + 604)), (774 - 608) - (122 + (73 - 29)), (1924 - 1229) - (617 - (45 + 280)));
-													if v98 then
-														v98.Visible = true;
-													end
-													FlatIdent_86900 = 1;
-												end
-											end
-										end
-									end
-									break;
-								end
-							end
-							break;
-						end
-						if (FlatIdent_1FC27 == 0) then
-							v481 = 0 + 0;
-							v482 = nil;
-							FlatIdent_1FC27 = 1;
-						end
-					end
+					sliderthing.Position = UDim2.new(0,15,0,-3)
+					slider.BackgroundColor3 = Color3.fromRGB(0, 240, 0)
+					--callback(pressed)
 				end
-				break;
-			end
-		end
-	end);
-	local v109 = Instance.new("TextButton");
-	v109.Name = "tabspacing";
-	v109.Parent = v84;
-	v109.Active = false;
-	v109.BackgroundColor3 = Color3.fromRGB(46 + 20 + 0, (1156 + 167) - (1043 + 79 + 135), 37 + 29);
-	v109.BackgroundTransparency = 1;
-	v109.Position = UDim2.new((0.0449172594 + 0) - 0, (2244 - 1032) - ((2234 - (340 + 1571)) + 351 + 538), -((1772.0000003767602 - (1733 + 39)) - (0 - 0)), 1034 - (125 + 909));
-	v109.Selectable = false;
-	v109.Size = UDim2.new((2528 - (1096 + 852)) - (162 + 199 + (312 - 93)), (684 + 21) - (53 + (779 - (409 + 103))), (236 - (46 + 190)) + (95 - (51 + 44)), (117 + 297) - ((1332 - (1114 + 203)) + (1124 - (228 + 498))));
-	v109.Font = Enum.Font.Roboto;
-	v109.Text = " ";
-	v109.TextColor3 = Color3.fromRGB((269 + 968) - (18 + 964), 959 - 704, 82 + 66 + (770 - (174 + 489)));
-	v109.TextSize = (36 - 22) + 8;
-	v85.Parent = v84;
-	v85.HorizontalAlignment = Enum.HorizontalAlignment.Center;
-	v85.SortOrder = Enum.SortOrder.LayoutOrder;
-	v85.Padding = UDim.new((2755 - (830 + 1075)) - ((544 - (303 + 221)) + (2099 - (231 + 1038))), 13);
-	local v129 = Instance.new("Sound", v25);
-	v129.SoundId = "rbxassetid://3314301672";
-	local v131 = Instance.new("Sound", v25);
-	v131.SoundId = "rbxassetid://6228296129";
-	v131.Volume = 1 + 0 + (1162 - (171 + 991));
-	v19.SetMainTab = function(v143, v144)
-		local FlatIdent_91B54 = 0;
-		local v145;
-		local v146;
-		while true do
-			if (FlatIdent_91B54 == 1) then
-				while true do
-					if (v145 == (0 - 0)) then
-						v146 = 0 - 0;
-						while true do
-							if (v146 == (126 - ((289 - 173) + 10))) then
-								if (v144.Tab:IsA("Frame") and (v144.Tab.Parent == v25)) then
-									for v575, v576 in next, v25:GetChildren() do
-										if (v576.Name == v144.Tab.Name) then
-											v576.Visible = false;
-										end
-									end
-								end
-								v144.Tab.Visible = true;
-								break;
-							end
-						end
-						break;
+
+				button.MouseButton1Click:Connect(function()
+					pressed = not pressed
+					if not pressed then
+						tween(sliderthing,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {Position = UDim2.new(0,-5,0,-3)})
+						tween(slider,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(200, 0, 0)})
+						callback(pressed)
+					else
+						tween(sliderthing,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {Position = UDim2.new(0,15,0,-3)})
+						tween(slider,TweenInfo.new(0.2,Enum.EasingStyle.Linear), {BackgroundColor3 = Color3.fromRGB(0, 240, 0)})
+						callback(pressed)
 					end
+				end)
+            end
+
+			function tab:NewTextBar(name, desc, defval)
+				local button = Instance.new("Frame")
+                local butcorner = Instance.new("UICorner")
+
+                button.Name = name
+                button.Parent = ScrollingFrame
+                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
+    
+                button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+                button.Size = UDim2.new(0, 385, 0, 39)
+
+                butcorner.CornerRadius = UDim.new(0, 5)
+                butcorner.Name = "butcorner"
+                butcorner.Parent = button
+
+                local infobutton = Instance.new("ImageButton")
+
+                infobutton.Name = "infobutton"
+                infobutton.Parent = button
+                infobutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                infobutton.BackgroundTransparency = 1.000
+                infobutton.Position = UDim2.new(0.0285714287, 0, 0.230769247, 0)
+                infobutton.Size = UDim2.new(0, 20, 0, 21)
+                infobutton.Image = "http://www.roblox.com/asset/?id=6294110112"
+
+                ScrollingFrame.CanvasSize = UDim2.fromOffset(ScrollingFrame.CanvasSize.X.Offset,ScrollingFrame.CanvasSize.Y.Offset+50)
+
+                local clicked = false
+				local box = Instance.new('TextBox',button)
+
+				box.Name = "box"
+				box.BackgroundColor3 = Color3.fromRGB(26,32,58)
+				box.Size = UDim2.new(0, button.Size.X.Offset - 45, 0, 33)
+				box.Position = UDim2.new(0, 40, 0, 3.5)
+				box.Font = Enum.Font.Roboto
+				box.PlaceholderText = name
+				box.PlaceholderColor3 = Color3.fromRGB(145, 145, 145)
+				box.Text = defval and defval or ''
+				box.TextXAlignment = Enum.TextXAlignment.Left
+				box.TextSize = 17.000
+				box.TextColor3 = Color3.fromRGB(255,255,255)
+				box.TextTruncate = Enum.TextTruncate.AtEnd
+
+				infobutton.MouseButton1Click:Connect(function()
+                    clicked = not clicked
+                    if clicked then
+                        box.PlaceholderText = desc
+                    else 
+                        box.PlaceholderText = name
+                    end
+                end)
+
+				local boxcorner = Instance.new("UICorner",box)
+				boxcorner.CornerRadius = UDim.new(0,5)
+				local boxpad = Instance.new("UIPadding",box)
+				boxpad.PaddingLeft = UDim.new(0,10)
+
+				local tab = {}
+				function tab:GetText()
+					return box.Text
 				end
-				break;
+				setmetatable(tab, {__index=function(t,k)if k == 'Text' then return box.Text end end, __newindex=function(t,k,v)if k == 'Text' then box.Text = v end end})
+				return tab
 			end
-			if (FlatIdent_91B54 == 0) then
-				v145 = 0;
-				v146 = nil;
-				FlatIdent_91B54 = 1;
+
+            tab.Tab = Tab
+            return tab
+        end
+
+    function window:Hide()
+        Main.Visible = false
+    end
+    function window:Show()
+        Main.Visible = true
+    end
+	function window:SetFooter(text)
+		footer.Text = text
+	end
+	function window:NewCommandBar(label)
+		local cmd = {}
+		local folder = Instance.new("Folder",ScreenGui)
+		local bar = Instance.new("Frame", folder)
+		local screensize = ScreenGui.AbsoluteSize
+		bar.Size = UDim2.new(0, screensize.X - (screensize.X/2), 0, 50)
+		bar.Position = UDim2.new(0, screensize.X/2, 0, screensize.Y - 50)
+		ScreenGui:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()
+			screensize = ScreenGui.AbsoluteSize
+			bar.Size = UDim2.new(0, screensize.X - (screensize.X/2), 0, 50)
+			bar.Position = UDim2.new(0, screensize.X/2, 0, screensize.Y - 50)
+		end)
+		bar.BackgroundColor3 = Color3.fromRGB(38, 45, 71)
+		bar.BackgroundTransparency = 0.4
+		bar.AnchorPoint = Vector2.new(0.5, 0)
+		bar.Transparency = 1
+		local crn = Instance.new("UICorner", bar)
+		crn.CornerRadius = UDim.new(0, 10)
+		local command = Instance.new("TextBox", bar)
+		command.Size = UDim2.new(0, bar.Size.X.Offset-15, 0, 40)
+		command.Position = UDim2.new(0, 6, 0, 6)
+		command.PlaceholderText = label;
+		command.Font = Enum.Font.Ubuntu
+		command.TextSize = 30
+		command.TextXAlignment = Enum.TextXAlignment.Left
+		command.BackgroundTransparency = 1
+		command.Text = ''
+		command.TextColor3 = Color3.fromRGB(255,255,255)
+		command.PlaceholderColor3 = Color3.fromRGB(156, 156, 156)
+		command.Transparency = 1
+
+		local cmds = Instance.new('ScrollingFrame', folder)
+		cmds.Size = UDim2.new(0, bar.Size.X.Offset, 0, 300)
+		cmds.Position = UDim2.new(0, screensize.X/4, 0, bar.Position.Y.Offset-300, 0)
+		cmds.Visible = true
+		cmds.BackgroundTransparency = 1
+		cmds.ScrollBarImageTransparency = 1
+		cmds.CanvasSize = UDim2.new(0,0,0,100)
+
+		local cmdlist = Instance.new('UIListLayout', cmds)
+		cmdlist.FillDirection = Enum.FillDirection.Vertical
+		cmdlist.HorizontalAlignment = Enum.HorizontalAlignment.Left
+		cmdlist.VerticalAlignment = Enum.VerticalAlignment.Bottom
+		cmdlist.Padding = UDim.new(0,15)
+
+		local hfix = Instance.new('UIAspectRatioConstraint', cmdlist)
+		hfix.AspectType = Enum.AspectType.ScaleWithParentSize
+		hfix.DominantAxis = Enum.DominantAxis.Height
+
+		game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
+			if key == ';' then
+				coroutine.wrap(function()
+					tween(bar, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency = 0.4})
+					tween(command, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {TextTransparency = 0})
+				end)()
+				task.wait() --because without this its gonna add a ; on the textbox
+				command:CaptureFocus()
 			end
-		end
-	end;
-	v19.NewTab = function(v147, v148)
-		local v149 = {};
-		local v150 = Instance.new("Frame");
-		local v151 = Instance.new("UICorner");
-		v150.Name = v148;
-		v150.Parent = v25;
-		v150.BackgroundColor3 = Color3.fromRGB(2 + 0 + 24, (2699 - 1929) - ((1563 - 1021) + (315 - 119)), (383 - 259) - 66);
-		v150.Position = UDim2.new((1248.302325577 - (111 + 1137)) + 0, 158 - (91 + 67), 0.0918114111 + (0 - 0), 0 + 0);
-		v150.Size = UDim2.new(523 - (423 + 100), 3 + 417, 0 - 0, 167 + 153);
-		v150.Visible = false;
-		local v158 = Instance.new("TextLabel");
-		v158.Parent = v150;
-		v158.Name = "currenttab";
-		v158.Text = v148;
-		v158.Position = UDim2.new(771 - (326 + 445), (34 - 26) + (26 - 14), (0 - 0) - (711 - (530 + 181)), (909 - (614 + 267)) - (49 - (19 + 13)));
-		v158.TextXAlignment = Enum.TextXAlignment.Left;
-		v158.TextSize = (2546 - 981) - (1126 + 425);
-		v158.Font = Enum.Font.Ubuntu;
-		v158.TextColor3 = Color3.fromRGB(660 - (118 + (668 - 381)), (2853 - 1854) - (194 + 550), (2419 - 1043) - ((244 - 126) + (2815 - (1293 + 519))));
-		v151.CornerRadius = UDim.new((0 - 0) - (0 - 0), 382 - ((271 - 129) + (1013 - 778)));
-		v151.Parent = v150;
-		local v171 = Instance.new("TextButton");
-		v171.Name = "tabbutton";
-		v171.Parent = v84;
-		v171.BackgroundColor3 = Color3.fromRGB((0 - 0) - 0, 11 + 8 + 68, (222 + 862) - ((1284 - 731) + 98 + 326));
-		v171.Position = UDim2.new(0.0405405387 - (0 + 0), 0 + 0 + (1096 - (709 + 387)), (1858.0399999991 - (673 + 1185)) + 0, 0 + (0 - 0));
-		v171.Size = UDim2.new((0 - 0) + (0 - 0), 149, 0 + 0, (61 + 23) - (34 + 11));
-		v171.Font = Enum.Font.Ubuntu;
-		v171.Text = v148;
-		v171.TextColor3 = Color3.fromRGB((958 - 248) - 455, (140 + 430) - (628 - 313), (146 - 71) + (2060 - (446 + 1434)));
-		v171.TextSize = 1300 - (1040 + 243);
-		v171.AutoButtonColor = false;
-		v171.MouseEnter:Connect(function()
-			tween(v171, TweenInfo.new((0.4 - 0) - (1847 - (559 + 1288)), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB((2787 - (609 + 1322)) - ((693 - (13 + 441)) + 514), (208 - 152) + (267 - 165), 158)});
-		end);
-		v171.MouseLeave:Connect(function()
-			tween(v171, TweenInfo.new(0.4 - 0, Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(14, (54 + 1389) - ((2894 - 2097) + 532), 39 + 70 + 18 + 23)});
-		end);
-		local v182 = Instance.new("UICorner");
-		v182.CornerRadius = UDim.new(0 - 0, 3 + 2);
-		v182.Parent = v171;
-		v171.MouseButton1Click:Connect(function()
-			local FlatIdent_63AE4 = 0;
-			local v279;
-			local v280;
-			while true do
-				if (1 == FlatIdent_63AE4) then
-					while true do
-						if (v279 == 0) then
-							v280 = (0 - 0) + 0;
-							while true do
-								if (v280 == (1 + 0)) then
-									v150.Visible = true;
-									break;
-								end
-								if (v280 == (0 - (0 + 0))) then
-									local v509 = 0 + 0;
-									while true do
-										if (v509 == (1 + 0)) then
-											v280 = (1177 + 26) - ((806 - (153 + 280)) + 829);
-											break;
-										end
-										if (v509 == (0 - 0)) then
-											for v624, v625 in pairs(v25:GetChildren()) do
-												if (v625:IsA("Frame") and (v625.Name ~= "tab buttons")) then
-													v625.Visible = false;
-												end
-											end
-											v131:Play();
-											v509 = 1;
-										end
-									end
-								end
-							end
-							break;
-						end
+		end)
+
+		actualcmds = {}
+
+		command:GetPropertyChangedSignal('Text'):Connect(function()
+			coroutine.wrap(function(thing)
+				wait(10)
+				if command.Text == thing then
+					tween(bar, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency = 1})
+					tween(command, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {TextTransparency = 1})
+					for _,v in next, cmds:GetChildren() do
+						if v:IsA('Frame') then v.Visible = false end
 					end
-					break;
+					command:ReleaseFocus()
 				end
-				if (FlatIdent_63AE4 == 0) then
-					v279 = 0;
-					v280 = nil;
-					FlatIdent_63AE4 = 1;
-				end
-			end
-		end);
-		local v185 = Instance.new("ScrollingFrame");
-		v185.Parent = v150;
-		v185.Active = true;
-		v185.Size = UDim2.new(731 - (428 + 48 + 101 + 154), (812 + 738) - (335 + 34 + 552 + 209), 0 + (0 - 0), 261);
-		v185.ScrollBarImageColor3 = Color3.fromRGB(9 + 5, 206 - (759 - (89 + 578)), (203 + 81) - (278 - 144));
-		v185.BackgroundColor3 = Color3.fromRGB(1304 - (572 + 477), 35 + 220, 493 - (39 + 25 + 21 + 153));
-		v185.BackgroundTransparency = 1 + 0;
-		v185.BorderColor3 = Color3.fromRGB((125 - (84 + 2)) - (19 - 7), 31 + 11, 389 - ((986 - (497 + 345)) + 5 + 187));
-		v185.BorderSizePixel = 0 + 0;
-		v185.Position = UDim2.new((1549 - (605 + 728)) - (42 + 125 + 49), (0 - 0) + 0 + 0, 0.082 - 0, 0 + 0);
-		v185.CanvasSize = UDim2.new((0 - 0) + 0 + 0, 0 + 0, 1519 - ((852 - (457 + 32)) + 485 + 656), (2982 - (832 + 570)) - (1115 + 68 + 104 + 293));
-		v185.Size = UDim2.new(0 - 0, 420, (0 + 0) - 0, (1012 - (588 + 208)) + (210 - 132));
-		v150.ChildAdded:Connect(function(v281)
-			if (v281.Name == "SearchBar") then
-				local FlatIdent_2A644 = 0;
-				local v408;
-				local v409;
-				local v410;
-				local v411;
-				while true do
-					if (FlatIdent_2A644 == 0) then
-						v408 = 0;
-						v409 = nil;
-						FlatIdent_2A644 = 1;
-					end
-					if (FlatIdent_2A644 == 1) then
-						v410 = nil;
-						v411 = nil;
-						FlatIdent_2A644 = 2;
-					end
-					if (FlatIdent_2A644 == 2) then
-						while true do
-							if (v408 == 0) then
-								local FlatIdent_8E5B4 = 0;
-								while true do
-									if (FlatIdent_8E5B4 == 1) then
-										v408 = 1 - 0;
-										break;
-									end
-									if (FlatIdent_8E5B4 == 0) then
-										v409 = 1800 - (884 + 916);
-										v410 = nil;
-										FlatIdent_8E5B4 = 1;
-									end
-								end
-							end
-							if (v408 == (1 + 0)) then
-								v411 = nil;
-								while true do
-									if (v409 == (654 - (232 + 421))) then
-										while true do
-											if (v410 == 0) then
-												v411 = 1889 - (1569 + 320);
-												while true do
-													if (v411 == ((485 + 1490) - (1913 + 12 + 50))) then
-														v185.Size = UDim2.new((0 - 0) + (605 - (316 + 289)), 1099 - 679, 0 + 0, (2143 - (666 + 787)) - (854 - (360 + 65)));
-														v185.Position = UDim2.new(0 + 0, (2187 - (79 + 175)) - ((890 - 325) + 1068 + 300), (0.183206141 - 0) - 0, (3198 - 1537) - ((2376 - (503 + 396)) + 184));
-														break;
-													end
-												end
-												break;
-											end
-										end
-										break;
-									end
-									if (v409 == (181 - (92 + 89))) then
-										local v577 = 0 - 0;
-										while true do
-											if (v577 == (1 + 0)) then
-												v409 = 1 + 0;
-												break;
-											end
-											if (v577 == (0 - 0)) then
-												local FlatIdent_8FBAE = 0;
-												while true do
-													if (FlatIdent_8FBAE == 0) then
-														v410 = 0 + 0 + 0;
-														v411 = nil;
-														FlatIdent_8FBAE = 1;
-													end
-													if (FlatIdent_8FBAE == 1) then
-														v577 = 1;
-														break;
-													end
-												end
-											end
-										end
-									end
-								end
-								break;
-							end
-						end
-						break;
+			end)(command.Text)
+			for _,v in pairs(cmds:GetChildren()) do
+				if v:IsA("GuiObject") then
+					local Text = v.Name:lower()
+					if command.Text ~= '' and (Text:match(command.Text:lower()) or command.Text == "cmds") then -- or v == SearchBar then
+						v.Visible = true
+					else
+						v.Visible = false
 					end
 				end
 			end
-		end);
-		v150.ChildRemoved:Connect(function(v282)
-			if (v282.Name == "SearchBar") then
-				local FlatIdent_71EE8 = 0;
-				local v412;
-				while true do
-					if (FlatIdent_71EE8 == 0) then
-						v412 = (0 - 0) - 0;
-						while true do
-							if (v412 == (0 + 0)) then
-								v185.Size = UDim2.new(0, 201 + 219, (0 - 0) + 0 + 0, (1753 - 603) - ((1808 - (485 + 759)) + (675 - 383)));
-								v185.Position = UDim2.new((1189 - (442 + 747)) - (1135 - (832 + 303)), (946 - (88 + 858)) - (0 + 0), (252.082 + 52) - (244 + 60), 0 + 0 + (789 - (766 + 23)));
-								break;
-							end
-						end
-						break;
+			cmds.CanvasPosition = Vector2.new(0, cmds.CanvasSize.Y.Offset)
+		end)
+
+		command.MouseEnter:Connect(function()
+			tween(bar, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency = 0.4})
+			tween(command, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {TextTransparency = 0})
+		end)
+
+		--[[command.MouseLeave:Connect(function()
+			print(command.CursorPosition)
+			if command.CursorPosition > 0 then return end
+			tween(bar, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency = 1})
+			tween(command, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {TextTransparency = 1})
+		end)]]
+
+		command.FocusLost:Connect(function(enter)
+			if enter then
+				local cmdz = {}
+				for v in string.gmatch(command.Text, "[^ ]+") do
+					table.insert(cmdz, v)
+				end
+
+				local cmdd = table.remove(cmdz, 1)
+
+				for i,v in next, actualcmds do
+					if v[cmdd] then
+						actualcmds[i][cmdd](cmdz)
 					end
 				end
 			end
-		end);
-		local v196 = Instance.new("UIListLayout");
-		v196.Parent = v185;
-		v196.HorizontalAlignment = Enum.HorizontalAlignment.Center;
-		v196.SortOrder = Enum.SortOrder.LayoutOrder;
-		v196.Padding = UDim.new(476 - (41 + (2147 - 1712)), 1008 - ((1282 - 344) + (165 - 102)));
-		local v203 = Instance.new("TextButton");
-		v203.Name = "tabspacing";
-		v203.Parent = v185;
-		v203.Active = false;
-		v203.BackgroundColor3 = Color3.fromRGB(223 - 157, 1139 - (1036 + 37), 51 + 11 + 4);
-		v203.BackgroundTransparency = (2192 - 1066) - (737 + 199 + 189);
-		v203.Position = UDim2.new(1480.0449172594 - (641 + 839), 913 - (910 + 3), -3.7676023e-7, 0);
-		v203.Selectable = false;
-		v203.Size = UDim2.new(0, 127 + (657 - 399), 1684 - (1466 + 218), 1 + 0);
-		v203.Font = Enum.Font.Roboto;
-		v203.Text = " ";
-		v203.TextColor3 = Color3.fromRGB((3016 - (556 + 592)) - (557 + 1008 + (856 - (329 + 479))), (1012 - (174 + 680)) + (333 - 236), (2886 - 1493) - (559 + 223 + 356));
-		v203.TextSize = 761 - (396 + 343);
-		v149.NewLabel = function(v283, v284)
-			local FlatIdent_956D = 0;
-			local v285;
-			local v286;
-			local v300;
-			while true do
-				if (FlatIdent_956D == 0) then
-					v285 = Instance.new("TextLabel");
-					v286 = Instance.new("UICorner");
-					v285.Name = v18;
-					v285.Parent = v185;
-					FlatIdent_956D = 1;
-				end
-				if (FlatIdent_956D == 1) then
-					v285.BackgroundColor3 = Color3.fromRGB((27 + 268) - (176 + 91), 242 - (1626 - (29 + 1448)), 152);
-					v285.Position = UDim2.new(0.150118202 - (1389 - (135 + 1254)), 0, 0.000254076178, (4113 - 3021) - (975 + (546 - 429)));
-					v285.Size = UDim2.new(1875 - (157 + 1145 + 573), (1840 - (389 + 1138)) + (646 - (102 + 472)), (0 + 0) - (0 + 0), 37 + 2);
-					v285.Font = Enum.Font.Roboto;
-					FlatIdent_956D = 2;
-				end
-				if (FlatIdent_956D == 3) then
-					v286.Parent = v285;
-					v185.CanvasSize = UDim2.fromOffset(v185.CanvasSize.X.Offset, v185.CanvasSize.Y.Offset + (123 - 73));
-					v300 = setmetatable({}, {__index=function(v399, v400)
-						if (v400 == "Text") then
-							return v284;
-						end
-					end,__newindex=function(v401, v402, v403)
-						if (v402 == "Text") then
-							local FlatIdent_F26C = 0;
-							local v418;
-							local v419;
-							while true do
-								if (FlatIdent_F26C == 1) then
-									while true do
-										if (v418 == (0 + 0)) then
-											v419 = (0 + 0) - 0;
-											while true do
-												if (v419 == (0 + 0)) then
-													v285.Text = v403;
-													v284 = v403;
-													break;
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-								if (FlatIdent_F26C == 0) then
-									v418 = 1026 - (834 + 192);
-									v419 = nil;
-									FlatIdent_F26C = 1;
-								end
-							end
-						end
-					end});
-					return v300;
-				end
-				if (FlatIdent_956D == 2) then
-					v285.Text = v284;
-					v285.TextColor3 = Color3.fromRGB((2416 - (320 + 1225)) - (1096 - 480), (779 + 494) - ((2161 - (157 + 1307)) + (2180 - (821 + 1038))), 636 - 381);
-					v285.TextSize = 37 - (3 + 20);
-					v286.CornerRadius = UDim.new(0 - 0, 10 - (2 + 3));
-					FlatIdent_956D = 3;
-				end
+			for _,v in next, cmds:GetChildren() do
+				if v:IsA('Frame') then v.Visible = false end
 			end
-		end;
-		v149.NewSearchBar = function(v301)
-			local FlatIdent_77478 = 0;
-			local v302;
-			local v303;
-			local v304;
-			local v305;
-			while true do
-				if (1 == FlatIdent_77478) then
-					v304 = nil;
-					v305 = nil;
-					FlatIdent_77478 = 2;
-				end
-				if (FlatIdent_77478 == 2) then
-					while true do
-						if (v302 == (306 - (300 + 4))) then
-							local FlatIdent_67F21 = 0;
-							while true do
-								if (FlatIdent_67F21 == 0) then
-									v303.Position = UDim2.new(0 + 0, 31 - 19, 362 - (112 + 250), (23 + 33) - (87 - 52));
-									v303.BackgroundTransparency = 1227.5 - (322 + 519 + 386);
-									FlatIdent_67F21 = 1;
-								end
-								if (FlatIdent_67F21 == 1) then
-									v303.Size = UDim2.new(0, 205 + 191, (457 + 154) - (602 + 9), (607 + 616) - (334 + 115 + (2154 - (1001 + 413))));
-									v302 = 6 - 3;
-									break;
-								end
-							end
-						end
-						if (v302 == 0) then
-							local FlatIdent_656E9 = 0;
-							while true do
-								if (FlatIdent_656E9 == 1) then
-									v304 = Instance.new("UICorner");
-									v302 = 883 - (244 + 638);
-									break;
-								end
-								if (FlatIdent_656E9 == 0) then
-									if v150:FindFirstChild("SearchBar") then
-										return;
-									end
-									v303 = Instance.new("TextBox");
-									FlatIdent_656E9 = 1;
-								end
-							end
-						end
-						if (v302 == (700 - (627 + 66))) then
-							local FlatIdent_163A8 = 0;
-							while true do
-								if (FlatIdent_163A8 == 1) then
-									v304.Parent = v303;
-									v302 = 1914 - (1665 + 241);
-									break;
-								end
-								if (FlatIdent_163A8 == 0) then
-									v305.Image = "rbxassetid://2804603863";
-									v304.CornerRadius = UDim.new(0 - (0 - 0), 607 - (512 + 90));
-									FlatIdent_163A8 = 1;
-								end
-							end
-						end
-						if (v302 == (723 - (373 + 344))) then
-							local FlatIdent_6147E = 0;
-							local v426;
-							while true do
-								if (FlatIdent_6147E == 0) then
-									v426 = 0 + 0;
-									while true do
-										if (v426 == (0 + 0)) then
-											v305.BackgroundTransparency = (1163 - 722) - ((645 - 263) + (1157 - (35 + 1064)));
-											v305.Position = UDim2.new(0.0379999988 + 0, 0 - 0, (0.230000004 - 0) + 0, 0 - 0);
-											v426 = 1 + 0;
-										end
-										if (v426 == (1237 - (298 + 938))) then
-											v305.Size = UDim2.new(1259 - (233 + 1026), (1725 - (636 + 1030)) - (20 + 19), (1178 + 27) - (268 + 634 + 21 + 282), 241 - (55 + 166));
-											v302 = 2 + 5;
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v302 == (1 + 3)) then
-							v303.TextColor3 = Color3.fromRGB((4304 - 3177) - ((1123 - (36 + 261)) + (79 - 33)), 1202 - (245 + (2070 - (34 + 1334))), (310 + 495) - (428 + 122));
-							v303.TextSize = 1303 - (1035 + 248);
-							v305 = Instance.new("ImageLabel");
-							v302 = 26 - (20 + 1);
-						end
-						if (v302 == 1) then
-							local FlatIdent_51C44 = 0;
-							while true do
-								if (FlatIdent_51C44 == 1) then
-									v303.BackgroundColor3 = Color3.fromRGB(0 + 0 + (319 - (134 + 185)), 149 - (1202 - (549 + 584)), 823 - (314 + 371));
-									v302 = 6 - 4;
-									break;
-								end
-								if (FlatIdent_51C44 == 0) then
-									v303.Name = "SearchBar";
-									v303.Parent = v150;
-									FlatIdent_51C44 = 1;
-								end
-							end
-						end
-						if (v302 == (976 - (478 + 490))) then
-							v303.Changed:Connect(function()
-								for v505, v506 in pairs(v185:GetChildren()) do
-									if v506:IsA("GuiObject") then
-										local FlatIdent_13B77 = 0;
-										local v560;
-										local v561;
-										while true do
-											if (0 == FlatIdent_13B77) then
-												v560 = (0 + 0) - 0;
-												v561 = nil;
-												FlatIdent_13B77 = 1;
-											end
-											if (FlatIdent_13B77 == 1) then
-												while true do
-													if (v560 == ((1172 - (786 + 386)) + (0 - 0))) then
-														v561 = v506.Name:lower();
-														if (v561:match(v303.Text:lower()) or (v303.Text == "") or (v561 == "decoylmao")) then
-															v506.Visible = true;
-														else
-															v506.Visible = false;
-														end
-														break;
-													end
-												end
-												break;
-											end
-										end
-									end
-								end
-							end);
-							break;
-						end
-						if (v302 == 5) then
-							local FlatIdent_98327 = 0;
-							while true do
-								if (FlatIdent_98327 == 0) then
-									v305.Name = "searchicon";
-									v305.Parent = v303;
-									FlatIdent_98327 = 1;
-								end
-								if (FlatIdent_98327 == 1) then
-									v305.BackgroundColor3 = Color3.fromRGB(255, 82 + (1552 - (1055 + 324)), 2153 - ((1600 - (1093 + 247)) + 1456 + 182));
-									v302 = 1 + 5;
-									break;
-								end
-							end
-						end
-						if (v302 == (11 - 8)) then
-							local FlatIdent_35AC5 = 0;
-							while true do
-								if (FlatIdent_35AC5 == 1) then
-									v303.Text = "";
-									v302 = 13 - 9;
-									break;
-								end
-								if (FlatIdent_35AC5 == 0) then
-									v303.Font = Enum.Font.SourceSans;
-									v303.PlaceholderText = "search bar";
-									FlatIdent_35AC5 = 1;
-								end
-							end
-						end
-					end
-					break;
-				end
-				if (FlatIdent_77478 == 0) then
-					v302 = 0 - 0;
-					v303 = nil;
-					FlatIdent_77478 = 1;
-				end
-			end
-		end;
-		v149.NewButton = function(v306, v307, v308, v309)
-			local v310 = 0 - 0;
-			local v311;
-			local v312;
-			local v313;
-			local v314;
-			local v315;
-			local v316;
-			while true do
-				if (v310 == 1) then
-					v313 = nil;
-					v314 = nil;
-					v310 = 4 - 2;
-				end
-				if (v310 == (2 + 1)) then
-					while true do
-						if (v311 == 1) then
-							local v513 = 0 - 0;
-							local v514;
-							while true do
-								if (v513 == 0) then
-									v514 = 0;
-									while true do
-										if (v514 == (3 - 2)) then
-											local FlatIdent_8A9D7 = 0;
-											while true do
-												if (FlatIdent_8A9D7 == 0) then
-													v312.Font = Enum.Font.Roboto;
-													v312.Text = v307;
-													FlatIdent_8A9D7 = 1;
-												end
-												if (FlatIdent_8A9D7 == 1) then
-													v514 = 2 + 0;
-													break;
-												end
-											end
-										end
-										if (v514 == (0 - 0)) then
-											local FlatIdent_22A5C = 0;
-											while true do
-												if (FlatIdent_22A5C == 1) then
-													v514 = 1;
-													break;
-												end
-												if (0 == FlatIdent_22A5C) then
-													v312.Position = UDim2.new((902.1501182019999 - (364 + 324)) - ((60 - 38) + (460 - 268)), (227 + 456) - (483 + (836 - 636)), 0.000254076178 - 0, (4443 - 2980) - ((2672 - (1249 + 19)) + 54 + 5));
-													v312.Size = UDim2.new(0 - (0 - 0), (1603 - (686 + 400)) - (104 + 28), (994 - (73 + 156)) - (468 + 297), (3 + 598) - ((1145 - (721 + 90)) + 228));
-													FlatIdent_22A5C = 1;
-												end
-											end
-										end
-										if (v514 == (1 + 1)) then
-											v312.TextColor3 = Color3.fromRGB(860 - (1964 - 1359), 591 - (806 - (224 + 246)), (748 - 286) - (380 - 173));
-											v311 = 1 + 1 + 0;
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v311 == ((6 + 235) - (104 + 37 + (188 - 93)))) then
-							local v515 = 0 + 0;
-							while true do
-								if (2 == v515) then
-									v312.MouseLeave:Connect(function()
-										if (v316 and not v315) then
-											tween(v312, TweenInfo.new(0.2 - (0 - 0), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(527 - (203 + 310), (2266 - (1238 + 755)) - (12 + 147), (1570 - (709 + 825)) + (209 - 95))});
-										end
-									end);
-									v311 = (22 - 6) - (874 - (196 + 668));
-									break;
-								end
-								if (((0 - 0) + 0) == v515) then
-									local FlatIdent_1F620 = 0;
-									while true do
-										if (FlatIdent_1F620 == 0) then
-											v315 = false;
-											v316 = false;
-											FlatIdent_1F620 = 1;
-										end
-										if (1 == FlatIdent_1F620) then
-											v515 = 1;
-											break;
-										end
-									end
-								end
-								if (v515 == ((1 - 0) + 0)) then
-									local v585 = 833 - (171 + 662);
-									while true do
-										if ((93 - (4 + 89)) == v585) then
-											v312.MouseButton1Down:Connect(function()
-												local FlatIdent_2C980 = 0;
-												local v674;
-												local v675;
-												while true do
-													if (FlatIdent_2C980 == 0) then
-														v674 = 0 - 0;
-														v675 = nil;
-														FlatIdent_2C980 = 1;
-													end
-													if (FlatIdent_2C980 == 1) then
-														while true do
-															if (v674 == 0) then
-																v675 = 0 - (0 + 0);
-																while true do
-																	if (v675 == ((4 - 3) + 0 + 0)) then
-																		tween(v312, TweenInfo.new((1649.2 - (35 + 1451)) - ((1545 - (28 + 1425)) + (2064 - (941 + 1052))), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(50 + 50, (248 + 10) - (1618 - (822 + 692)), 921 - ((819 - 245) + 90 + 101))});
-																		break;
-																	end
-																	if (v675 == ((297 - (45 + 252)) + 0 + 0)) then
-																		if v315 then
-																			return;
-																		end
-																		if (v316 == false) then
-																			v316 = true;
-																		end
-																		v675 = (1 + 1) - (2 - 1);
-																	end
-																end
-																break;
-															end
-														end
-														break;
-													end
-												end
-											end);
-											v312.MouseButton1Up:Connect(function()
-												local FlatIdent_61084 = 0;
-												local v676;
-												local v677;
-												local v678;
-												while true do
-													if (FlatIdent_61084 == 1) then
-														v678 = nil;
-														while true do
-															if (v676 == (433 - (114 + 319))) then
-																local FlatIdent_7C57C = 0;
-																while true do
-																	if (FlatIdent_7C57C == 1) then
-																		v676 = 1 - 0;
-																		break;
-																	end
-																	if (FlatIdent_7C57C == 0) then
-																		v677 = 0 + (0 - 0);
-																		v678 = nil;
-																		FlatIdent_7C57C = 1;
-																	end
-																end
-															end
-															if (v676 == (1 + 0)) then
-																while true do
-																	if (v677 == ((1264 - 415) - ((532 - 278) + (2558 - (556 + 1407))))) then
-																		v678 = 1206 - (741 + 465);
-																		while true do
-																			if ((126 - ((520 - (170 + 295)) + 38 + 33)) == v678) then
-																				local v717 = 0 + 0;
-																				while true do
-																					if (v717 == (0 - 0)) then
-																						local FlatIdent_78A9D = 0;
-																						while true do
-																							if (FlatIdent_78A9D == 1) then
-																								v717 = 1;
-																								break;
-																							end
-																							if (FlatIdent_78A9D == 0) then
-																								if v315 then
-																									return;
-																								end
-																								if (v316 == true) then
-																									v316 = false;
-																								end
-																								FlatIdent_78A9D = 1;
-																							end
-																						end
-																					end
-																					if (v717 == (1 + 0)) then
-																						v678 = 1 - (0 + 0);
-																						break;
-																					end
-																				end
-																			end
-																			if (((1015 + 776) - ((1803 - (957 + 273)) + 326 + 891)) == v678) then
-																				tween(v312, TweenInfo.new((0.2 + 0) - 0, Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(2 + (45 - 33), 183 - (181 - 112), 1089 - (714 + (687 - 462)))});
-																				break;
-																			end
-																		end
-																		break;
-																	end
-																end
-																break;
-															end
-														end
-														break;
-													end
-													if (FlatIdent_61084 == 0) then
-														v676 = 0;
-														v677 = nil;
-														FlatIdent_61084 = 1;
-													end
-												end
-											end);
-											v585 = 4 - 3;
-										end
-										if (v585 == 1) then
-											v515 = (1785 - (389 + 1391)) - 3;
-											break;
-										end
-									end
-								end
-							end
-						end
-						if (v311 == ((0 + 0) - (0 + 0))) then
-							local FlatIdent_559FF = 0;
-							local v516;
-							while true do
-								if (FlatIdent_559FF == 0) then
-									v516 = 0 - 0;
-									while true do
-										if (v516 == (953 - (783 + 168))) then
-											v312.BackgroundColor3 = Color3.fromRGB(2 + (40 - 28), 164 - (50 + 0), 150);
-											v311 = 1;
-											break;
-										end
-										if (v516 == 0) then
-											v312 = Instance.new("TextButton");
-											v313 = Instance.new("UICorner");
-											v516 = 312 - (309 + 2);
-										end
-										if (v516 == (2 - 1)) then
-											local FlatIdent_87441 = 0;
-											while true do
-												if (FlatIdent_87441 == 1) then
-													v516 = 1214 - (1090 + 122);
-													break;
-												end
-												if (FlatIdent_87441 == 0) then
-													v312.Name = v307;
-													v312.Parent = v185;
-													FlatIdent_87441 = 1;
-												end
-											end
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v311 == (2 + 2)) then
-							local FlatIdent_4D907 = 0;
-							local v517;
-							local v518;
-							while true do
-								if (FlatIdent_4D907 == 1) then
-									while true do
-										if (0 == v517) then
-											v518 = (552 + 254) - ((1236 - (628 + 490)) + 688);
-											while true do
-												if (v518 == 2) then
-													v185.CanvasSize = UDim2.fromOffset(v185.CanvasSize.X.Offset, v185.CanvasSize.Y.Offset + ((18 + 80) - ((61 - 36) + 23)));
-													v311 = (4 - 3) + (778 - (431 + 343));
-													break;
-												end
-												if (v518 == (0 - 0)) then
-													local FlatIdent_91A09 = 0;
-													local v638;
-													while true do
-														if (FlatIdent_91A09 == 0) then
-															v638 = 0;
-															while true do
-																if (v638 == (0 - 0)) then
-																	local FlatIdent_C79F = 0;
-																	while true do
-																		if (0 == FlatIdent_C79F) then
-																			v314.BackgroundTransparency = 1 + 0;
-																			v314.Position = UDim2.new((242.02857142869993 + 1644) - ((2622 - (556 + 1139)) + 959), 15 - (6 + 9), (0.230769247 + 0) - (0 + 0), (901 - (28 + 141)) - (7 + 9 + (883 - 167)));
-																			FlatIdent_C79F = 1;
-																		end
-																		if (FlatIdent_C79F == 1) then
-																			v638 = 1 + 0;
-																			break;
-																		end
-																	end
-																end
-																if (v638 == (1318 - (486 + 831))) then
-																	v518 = 2 - 1;
-																	break;
-																end
-															end
-															break;
-														end
-													end
-												end
-												if (v518 == (1 - (0 - 0))) then
-													local FlatIdent_15354 = 0;
-													local v639;
-													local v640;
-													while true do
-														if (FlatIdent_15354 == 0) then
-															v639 = 0;
-															v640 = nil;
-															FlatIdent_15354 = 1;
-														end
-														if (FlatIdent_15354 == 1) then
-															while true do
-																if (v639 == (0 + 0)) then
-																	v640 = 0 - 0;
-																	while true do
-																		if (v640 == 0) then
-																			local FlatIdent_92569 = 0;
-																			while true do
-																				if (FlatIdent_92569 == 0) then
-																					v314.Size = UDim2.new(97 - (11 + (1349 - (668 + 595))), 48 - (26 + 2), 0 + 0, (834 - 528) - ((465 - (23 + 267)) + 110));
-																					v314.Image = "http://www.roblox.com/asset/?id=6294110112";
-																					FlatIdent_92569 = 1;
-																				end
-																				if (1 == FlatIdent_92569) then
-																					v640 = 1945 - (1129 + 815);
-																					break;
-																				end
-																			end
-																		end
-																		if ((388 - (371 + 16)) == v640) then
-																			v518 = (1754 - (1326 + 424)) - (3 - 1);
-																			break;
-																		end
-																	end
-																	break;
-																end
-															end
-															break;
-														end
-													end
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-								if (FlatIdent_4D907 == 0) then
-									v517 = 0 - 0;
-									v518 = nil;
-									FlatIdent_4D907 = 1;
-								end
-							end
-						end
-						if (v311 == ((32 - 23) - 7)) then
-							local v519 = 0;
-							local v520;
-							while true do
-								if (v519 == (118 - (88 + 30))) then
-									v520 = 771 - (720 + 51);
-									while true do
-										if (v520 == (0 - 0)) then
-											local FlatIdent_42B8B = 0;
-											while true do
-												if (FlatIdent_42B8B == 1) then
-													v520 = 1;
-													break;
-												end
-												if (FlatIdent_42B8B == 0) then
-													v312.TextSize = 1793 - (421 + 1355);
-													v312.AutoButtonColor = false;
-													FlatIdent_42B8B = 1;
-												end
-											end
-										end
-										if (v520 == (1 - 0)) then
-											local FlatIdent_5013F = 0;
-											while true do
-												if (0 == FlatIdent_5013F) then
-													v312.ZIndex = 0;
-													v313.CornerRadius = UDim.new((883 + 913) - ((1586 - (286 + 797)) + (4726 - 3433)), 13 - 8);
-													FlatIdent_5013F = 1;
-												end
-												if (FlatIdent_5013F == 1) then
-													v520 = 2 - 0;
-													break;
-												end
-											end
-										end
-										if ((441 - (397 + 42)) == v520) then
-											v313.Name = "butcorner";
-											v311 = 1 + 2;
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v311 == (3 + (800 - (24 + 776)))) then
-							local v521 = 0;
-							local v522;
-							while true do
-								if (v521 == 0) then
-									v522 = 0;
-									while true do
-										if (v522 == ((1635 - 573) - (810 + 251))) then
-											local FlatIdent_2E3CE = 0;
-											local v646;
-											while true do
-												if (FlatIdent_2E3CE == 0) then
-													v646 = 785 - (222 + 563);
-													while true do
-														if (v646 == (0 - 0)) then
-															v314.Name = "infobutton";
-															v314.Parent = v312;
-															v646 = 1 + 0;
-														end
-														if (1 == v646) then
-															v522 = 2 + (190 - (23 + 167));
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-										if (v522 == ((1799 - (690 + 1108)) + 1 + 0)) then
-											v314.BackgroundColor3 = Color3.fromRGB(190 + 40 + (873 - (40 + 808)), (130 + 658) - ((164 - 121) + 490), 255);
-											v311 = (705 + 32) - (377 + 334 + 22);
-											break;
-										end
-										if (v522 == (0 - (0 + 0))) then
-											local FlatIdent_31791 = 0;
-											local v648;
-											local v649;
-											while true do
-												if (FlatIdent_31791 == 0) then
-													v648 = 571 - (47 + 524);
-													v649 = nil;
-													FlatIdent_31791 = 1;
-												end
-												if (1 == FlatIdent_31791) then
-													while true do
-														if (v648 == (0 + 0)) then
-															v649 = 0 - 0;
-															while true do
-																if (v649 == (0 - 0)) then
-																	local FlatIdent_97E60 = 0;
-																	while true do
-																		if (0 == FlatIdent_97E60) then
-																			v313.Parent = v312;
-																			v314 = Instance.new("ImageButton");
-																			FlatIdent_97E60 = 1;
-																		end
-																		if (FlatIdent_97E60 == 1) then
-																			v649 = 1;
-																			break;
-																		end
-																	end
-																end
-																if (v649 == (2 - 1)) then
-																	v522 = 1727 - (1165 + 561);
-																	break;
-																end
-															end
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v311 == 6) then
-							v312.MouseButton1Click:Connect(function()
-								local FlatIdent_8C1D5 = 0;
-								local v562;
-								local v563;
-								while true do
-									if (FlatIdent_8C1D5 == 1) then
-										while true do
-											if (v562 == (0 - 0)) then
-												v563 = (328 + 531) - ((719 - (341 + 138)) + 168 + 451);
-												while true do
-													if ((0 + (0 - 0)) == v563) then
-														v129:Play();
-														v309();
-														break;
-													end
-												end
-												break;
-											end
-										end
-										break;
-									end
-									if (FlatIdent_8C1D5 == 0) then
-										v562 = 0 + 0;
-										v563 = nil;
-										FlatIdent_8C1D5 = 1;
-									end
-								end
-							end);
-							v314.MouseButton1Click:Connect(function()
-								local v564 = 0 - (326 - (89 + 237));
-								while true do
-									if (v564 == (0 - 0)) then
-										v315 = not v315;
-										if v315 then
-											local FlatIdent_16F8D = 0;
-											local v650;
-											while true do
-												if (FlatIdent_16F8D == 0) then
-													v650 = 0 - 0;
-													while true do
-														if (v650 == (881 - (581 + 300))) then
-															local FlatIdent_3C8BC = 0;
-															while true do
-																if (1 == FlatIdent_3C8BC) then
-																	v650 = 2 - 1;
-																	break;
-																end
-																if (FlatIdent_3C8BC == 0) then
-																	v312.Text = v308;
-																	v312.TextSize = (1221 - (855 + 365)) + 12;
-																	FlatIdent_3C8BC = 1;
-																end
-															end
-														end
-														if (1 == v650) then
-															tween(v312, TweenInfo.new(1744.2 - (1344 + 131 + 269), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB((1646 - (1030 + 205)) - (255 + 141 + 9), 48 + 3 + (299 - (156 + 130)), 245 - 137)});
-															break;
-														end
-													end
-													break;
-												end
-											end
-										else
-											local FlatIdent_69486 = 0;
-											local v651;
-											local v652;
-											local v653;
-											while true do
-												if (FlatIdent_69486 == 0) then
-													v651 = 0 - 0;
-													v652 = nil;
-													FlatIdent_69486 = 1;
-												end
-												if (FlatIdent_69486 == 1) then
-													v653 = nil;
-													while true do
-														if (v651 == (0 - 0)) then
-															local FlatIdent_24237 = 0;
-															while true do
-																if (FlatIdent_24237 == 0) then
-																	v652 = 0 + 0;
-																	v653 = nil;
-																	FlatIdent_24237 = 1;
-																end
-																if (FlatIdent_24237 == 1) then
-																	v651 = 1;
-																	break;
-																end
-															end
-														end
-														if (v651 == (1 + 0)) then
-															while true do
-																if (v652 == (0 + 0)) then
-																	v653 = 0 - 0;
-																	while true do
-																		if (v653 == (70 - (10 + 59))) then
-																			tween(v312, TweenInfo.new(0.2 - (0 + 0), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(1753 - ((1989 - 1585) + (2498 - (671 + 492))), (414 + 106) - ((1398 - (369 + 846)) + 223), (49 + 133) - (28 + 4))});
-																			break;
-																		end
-																		if (v653 == ((1945 - (1036 + 909)) + 0 + 0)) then
-																			local FlatIdent_2861D = 0;
-																			local v712;
-																			while true do
-																				if (FlatIdent_2861D == 0) then
-																					v712 = 0 - 0;
-																					while true do
-																						if ((203 - (11 + 192)) == v712) then
-																							v312.Text = v307;
-																							v312.TextSize = 7 + 10;
-																							v712 = 1 + 0;
-																						end
-																						if (v712 == (176 - (135 + 40))) then
-																							v653 = 338 - ((24 - 14) + 198 + 129);
-																							break;
-																						end
-																					end
-																					break;
-																				end
-																			end
-																		end
-																	end
-																	break;
-																end
-															end
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-										break;
-									end
-								end
-							end);
-							break;
-						end
-					end
-					break;
-				end
-				if (v310 == 0) then
-					local FlatIdent_53252 = 0;
-					while true do
-						if (FlatIdent_53252 == 0) then
-							v311 = 1690 - ((2469 - 1348) + 569);
-							v312 = nil;
-							FlatIdent_53252 = 1;
-						end
-						if (FlatIdent_53252 == 1) then
-							v310 = 1 - 0;
-							break;
-						end
-					end
-				end
-				if (v310 == (178 - (50 + 126))) then
-					local FlatIdent_25061 = 0;
-					while true do
-						if (FlatIdent_25061 == 0) then
-							v315 = nil;
-							v316 = nil;
-							FlatIdent_25061 = 1;
-						end
-						if (FlatIdent_25061 == 1) then
-							v310 = 8 - 5;
-							break;
-						end
-					end
-				end
-			end
-		end;
-		v149.NewBoolButton = function(v317, v318, v319, v320, v321)
-			local v322 = Instance.new("TextButton");
-			local v323 = Instance.new("UICorner");
-			v322.Name = v318;
-			v322.Parent = v185;
-			v322.BackgroundColor3 = Color3.fromRGB(4 + 10, (1493 - (1233 + 180)) + (1003 - (522 + 447)), (1909 - (107 + 1314)) - (55 + 63 + (670 - 450)));
-			v322.Position = UDim2.new(0.150118202 + 0 + (0 - 0), (1776 - 1327) - ((2018 - (716 + 1194)) + 6 + 335), 0.000254076178 + 0, (503 - (74 + 429)) + (0 - 0));
-			v322.Size = UDim2.new(0, (807 + 820) - 1242, 0 - 0, (1084 + 448) - ((2191 - 1480) + (1933 - 1151)));
-			v322.Font = Enum.Font.Roboto;
-			v322.Text = v318;
-			v322.TextColor3 = Color3.fromRGB((921 - (279 + 154)) - (1011 - (454 + 324)), 255, 255);
-			v322.TextSize = 486 - (213 + 57 + (216 - (12 + 5)));
-			v322.AutoButtonColor = false;
-			v323.CornerRadius = UDim.new(0 + 0 + (0 - 0), 1824 - (215 + 365 + (2332 - (277 + 816))));
-			v323.Name = "butcorner";
-			v323.Parent = v322;
-			local v338 = Instance.new("ImageButton");
-			v338.Name = "infobutton";
-			v338.Parent = v322;
-			v338.BackgroundColor3 = Color3.fromRGB(758 - (2149 - 1646), 244 + (1194 - (1058 + 125)), 255);
-			v338.BackgroundTransparency = 1 + 0 + (975 - (815 + 160));
-			v338.Position = UDim2.new(0.0285714287 + (0 - 0), 0 - (0 - 0), 0.230769247 + 0, (0 - 0) + 0);
-			v338.Size = UDim2.new(1167 - ((2543 - (41 + 1857)) + 522), (3703 - (1222 + 671)) - ((2610 - 1600) + (1121 - 341)), (1182 - (229 + 953)) + (1774 - (1111 + 663)), 1600 - (874 + 705));
-			v338.Image = "http://www.roblox.com/asset/?id=6294110112";
-			v185.CanvasSize = UDim2.fromOffset(v185.CanvasSize.X.Offset, v185.CanvasSize.Y.Offset + 50);
-			local v347 = false;
-			v338.MouseButton1Click:Connect(function()
-				local v404 = 0;
-				while true do
-					if ((1 + 0) == v404) then
-						if v347 then
-							local FlatIdent_2B407 = 0;
-							local v523;
-							local v524;
-							while true do
-								if (FlatIdent_2B407 == 0) then
-									v523 = (0 + 0) - (0 - 0);
-									v524 = nil;
-									FlatIdent_2B407 = 1;
-								end
-								if (FlatIdent_2B407 == 1) then
-									while true do
-										if (v523 == ((0 + 0) - (679 - (642 + 37)))) then
-											v524 = 0 + 0;
-											while true do
-												if (v524 == 1) then
-													tween(v322, TweenInfo.new((294.20000000000005 + 1542) - ((2623 - 1578) + (1245 - (233 + 221))), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB((0 - 0) - (0 + 0), 1615 - (718 + 823), (109 + 63) - (864 - (266 + 539)))});
-													break;
-												end
-												if (v524 == ((1429 - 924) - ((1576 - (636 + 589)) + (365 - 211)))) then
-													local FlatIdent_70C30 = 0;
-													local v654;
-													while true do
-														if (FlatIdent_70C30 == 0) then
-															v654 = 0;
-															while true do
-																if (1 == v654) then
-																	v524 = 267 - ((57 - 29) + 189 + 49);
-																	break;
-																end
-																if (v654 == (0 + 0)) then
-																	local FlatIdent_9875A = 0;
-																	while true do
-																		if (FlatIdent_9875A == 1) then
-																			v654 = 1;
-																			break;
-																		end
-																		if (FlatIdent_9875A == 0) then
-																			v322.Text = v319;
-																			v322.TextSize = 1587 - (1281 + (1308 - (657 + 358)));
-																			FlatIdent_9875A = 1;
-																		end
-																	end
-																end
-															end
-															break;
-														end
-													end
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-							end
-						else
-							local FlatIdent_1F1FE = 0;
-							local v525;
-							local v526;
-							local v527;
-							while true do
-								if (FlatIdent_1F1FE == 0) then
-									v525 = 0 - 0;
-									v526 = nil;
-									FlatIdent_1F1FE = 1;
-								end
-								if (FlatIdent_1F1FE == 1) then
-									v527 = nil;
-									while true do
-										if ((2 - 1) == v525) then
-											while true do
-												if (v526 == (1187 - (1151 + 36))) then
-													v527 = 1559 - (1334 + 47 + 47 + 131);
-													while true do
-														if (v527 == (1 + (0 - 0))) then
-															tween(v322, TweenInfo.new(1832.2 - (1552 + 280), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(12 + (836 - (64 + 770)), 34 + 15 + 65, 340 - 190)});
-															break;
-														end
-														if (v527 == (0 - (0 + 0))) then
-															local v696 = 1243 - (157 + 1086);
-															local v697;
-															while true do
-																if (v696 == (0 - 0)) then
-																	v697 = 0 - 0;
-																	while true do
-																		if ((1 - 0) == v697) then
-																			v527 = 471 - ((519 - 138) + (908 - (599 + 220)));
-																			break;
-																		end
-																		if ((0 - 0) == v697) then
-																			local FlatIdent_51FCC = 0;
-																			while true do
-																				if (FlatIdent_51FCC == 1) then
-																					v697 = 1218 - (841 + 376);
-																					break;
-																				end
-																				if (FlatIdent_51FCC == 0) then
-																					v322.Text = v318;
-																					v322.TextSize = (1940 - (1813 + 118)) + 6 + 2;
-																					FlatIdent_51FCC = 1;
-																				end
-																			end
-																		end
-																	end
-																	break;
-																end
-															end
-														end
-													end
-													break;
-												end
-											end
-											break;
-										end
-										if (v525 == (0 - 0)) then
-											v526 = (0 + 0) - 0;
-											v527 = nil;
-											v525 = 1;
-										end
-									end
-									break;
-								end
-							end
-						end
-						break;
-					end
-					if (v404 == (0 - 0)) then
-						local FlatIdent_6A0CF = 0;
-						while true do
-							if (FlatIdent_6A0CF == 0) then
-								v347 = not v347;
-								v131:Play();
-								FlatIdent_6A0CF = 1;
-							end
-							if (FlatIdent_6A0CF == 1) then
-								v404 = 860 - (464 + 395);
-								break;
-							end
-						end
-					end
-				end
-			end);
-			local v348 = Instance.new("Frame", v322);
-			v348.Name = "slider";
-			v348.BackgroundColor3 = Color3.fromRGB((456 - 278) + 22, 0 + 0 + 0, 0);
-			v348.Size = UDim2.new(837 - (467 + 370), 42 - (35 - 18), (849 + 307) - ((3681 - 2607) + 82), 21 - (2 + 9));
-			v348.Position = UDim2.new((4150 - 2366) - ((734 - (150 + 370)) + (2852 - (74 + 1208))), v322.Size.X.Offset - (98 - 58), 0, 15);
-			v348.BorderSizePixel = (6900 - 5445) - (705 + 285 + (855 - (14 + 376)));
-			local v354 = Instance.new("UICorner", v348);
-			v354.CornerRadius = UDim.new((0 - 0) + 0, 2 + 1 + 2 + 0);
-			local v356 = Instance.new("Frame", v348);
-			v356.Size = UDim2.new(0, 15 + 0 + (0 - 0), 0, (44 + 14) - 43);
-			v356.Position = UDim2.new((1804 - (23 + 55)) - (1668 + (137 - 79)), -((422 + 209) - (512 + 103 + 11)), (0 - 0) - (0 + 0), -3);
-			local v359 = Instance.new("UICorner", v356);
-			v359.CornerRadius = UDim.new((901 - (652 + 249)) - (0 - 0), (1937 - (708 + 1160)) - (132 - 83));
-			local v361 = v321 or false;
-			if not v361 then
-				local v413 = 0 - 0;
-				local v414;
-				while true do
-					if (v413 == (27 - (10 + 17))) then
-						v414 = 0 + 0;
-						while true do
-							if (v414 == (1732 - (1400 + 332))) then
-								v356.Position = UDim2.new(0 + (0 - 0), -((1909 - (242 + 1666)) + 2 + 2), 0 + 0, -(3 + 0 + (940 - (850 + 90))));
-								v348.BackgroundColor3 = Color3.fromRGB(674 - (830 - 356), (3384 - (360 + 1030)) - (97 + 12 + 1885), (4145 - 2676) - ((1745 - 476) + (1861 - (909 + 752))));
-								break;
-							end
-						end
-						break;
-					end
-				end
+			tween(bar, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency = 1})
+			tween(command, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {TextTransparency = 1})
+		end)
+
+		function cmd:AddCommand(name, args, description, callback)
+			local thinggy = Instance.new('Frame', cmds)
+			thinggy.Size = UDim2.new(0, cmds.Size.X.Offset, 0, 120)
+			thinggy.BackgroundColor3 = Color3.fromRGB(38, 45, 71)
+			thinggy.Position = UDim2.new(0,0,0,0)
+			thinggy.Name = name
+			thinggy.Visible = false
+			local crn = Instance.new("UICorner", thinggy)
+			crn.CornerRadius = UDim.new(0, 5)
+			local namee = Instance.new('TextLabel', thinggy)
+			namee.Size = UDim2.new(0, thinggy.Size.X.Offset-15, 0, 30)
+			namee.Position = UDim2.new(0,10,0,0)
+			namee.Text = 'Command:  '..name
+			namee.Font = Enum.Font.SourceSans
+			namee.TextSize = 30
+			namee.TextXAlignment = Enum.TextXAlignment.Left
+			namee.BackgroundTransparency = 1
+			namee.TextColor3 = Color3.fromRGB(255,255,255)
+			local argss = Instance.new('TextLabel', thinggy)
+			argss.Size = UDim2.new(0, thinggy.Size.X.Offset-15, 0, 30)
+			argss.Position = UDim2.new(0,10,0,30)
+			if type(args) == "table" then
+				argss.Text = 'Arguments:  '..table.concat(args, ', ')
 			else
-				local FlatIdent_86ECC = 0;
-				local v415;
-				local v416;
-				while true do
-					if (FlatIdent_86ECC == 1) then
-						while true do
-							if (v415 == 0) then
-								v416 = (1223 - (109 + 1114)) - 0;
-								while true do
-									if (((1492 - 677) - (98 + 280 + 437)) == v416) then
-										v356.Position = UDim2.new(0, 15, 242 - (6 + 236), -3);
-										v348.BackgroundColor3 = Color3.fromRGB(0 + 0, 1066 - (646 + 156 + (56 - 32)), 0);
-										break;
-									end
-								end
-								break;
-							end
-						end
-						break;
-					end
-					if (FlatIdent_86ECC == 0) then
-						v415 = 0;
-						v416 = nil;
-						FlatIdent_86ECC = 1;
-					end
-				end
+				argss.Text = 'Arguments:  '..args
 			end
-			v322.MouseButton1Click:Connect(function()
-				local v405 = 0 - (0 - 0);
-				while true do
-					if (v405 == 0) then
-						v361 = not v361;
-						if not v361 then
-							local v528 = 1133 - (1076 + 57);
-							local v529;
-							while true do
-								if (v528 == 0) then
-									v529 = 0 - 0;
-									while true do
-										if (v529 == (1 + 0 + 0)) then
-											v320(v361);
-											break;
-										end
-										if (v529 == ((689 - (579 + 110)) + 0 + 0)) then
-											local FlatIdent_53895 = 0;
-											local v655;
-											local v656;
-											while true do
-												if (FlatIdent_53895 == 0) then
-													v655 = 0 + 0;
-													v656 = nil;
-													FlatIdent_53895 = 1;
-												end
-												if (FlatIdent_53895 == 1) then
-													while true do
-														if ((0 + 0) == v655) then
-															v656 = 407 - (174 + 233);
-															while true do
-																if (v656 == (2 - 1)) then
-																	v529 = 1 - 0;
-																	break;
-																end
-																if (v656 == (0 + 0)) then
-																	local FlatIdent_5A134 = 0;
-																	while true do
-																		if (FlatIdent_5A134 == 0) then
-																			tween(v356, TweenInfo.new((1174.2 - (663 + 511)) + 0, Enum.EasingStyle.Linear), {Position=UDim2.new(0 + 0 + 0 + 0, -5, 0 - (0 - 0), -((6 + 3) - (13 - 7)))});
-																			tween(v348, TweenInfo.new(0.2 + (0 - 0), Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(96 + 104, 0 - 0, 0 + 0 + 0 + 0)});
-																			FlatIdent_5A134 = 1;
-																		end
-																		if (FlatIdent_5A134 == 1) then
-																			v656 = 723 - (478 + 244);
-																			break;
-																		end
-																	end
-																end
-															end
-															break;
-														end
-													end
-													break;
-												end
-											end
-										end
-									end
-									break;
-								end
-							end
-						else
-							local v530 = 0;
-							local v531;
-							local v532;
-							while true do
-								if (v530 == 1) then
-									while true do
-										if (v531 == ((517 - (440 + 77)) + 0)) then
-											v532 = 0;
-											while true do
-												if (v532 == (1 + 0)) then
-													v320(v361);
-													break;
-												end
-												if (v532 == (0 + (0 - 0))) then
-													local FlatIdent_87F0A = 0;
-													local v698;
-													while true do
-														if (FlatIdent_87F0A == 0) then
-															v698 = 0;
-															while true do
-																if (v698 == (1556 - (655 + 901))) then
-																	local FlatIdent_65A72 = 0;
-																	while true do
-																		if (FlatIdent_65A72 == 0) then
-																			tween(v356, TweenInfo.new(0.2 + 0, Enum.EasingStyle.Linear), {Position=UDim2.new(0 + 0, 1448 - (797 + 430 + 206), 0 - (0 - 0), -((3067 - (695 + 750)) - ((4872 - 3445) + 192)))});
-																			tween(v348, TweenInfo.new(0.2 - 0, Enum.EasingStyle.Linear), {BackgroundColor3=Color3.fromRGB(0 + (0 - 0), (908 - (285 + 66)) - (738 - 421), 0)});
-																			FlatIdent_65A72 = 1;
-																		end
-																		if (FlatIdent_65A72 == 1) then
-																			v698 = 1311 - (682 + 628);
-																			break;
-																		end
-																	end
-																end
-																if (v698 == 1) then
-																	v532 = 1 + 0;
-																	break;
-																end
-															end
-															break;
-														end
-													end
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-								if (v530 == (299 - (176 + 123))) then
-									local FlatIdent_1FAE6 = 0;
-									local v589;
-									while true do
-										if (FlatIdent_1FAE6 == 0) then
-											v589 = 0;
-											while true do
-												if ((0 + 0) == v589) then
-													local FlatIdent_5AC6 = 0;
-													while true do
-														if (1 == FlatIdent_5AC6) then
-															v589 = 1;
-															break;
-														end
-														if (FlatIdent_5AC6 == 0) then
-															v531 = 0 + 0 + (269 - (239 + 30));
-															v532 = nil;
-															FlatIdent_5AC6 = 1;
-														end
-													end
-												end
-												if (v589 == (1 + 0)) then
-													v530 = 1;
-													break;
-												end
-											end
-											break;
-										end
-									end
-								end
-							end
-						end
-						break;
-					end
-				end
-			end);
-		end;
-		v149.NewTextBar = function(v362, v363, v364, v365)
-			local v366 = 0;
-			local v367;
-			local v368;
-			local v369;
-			local v370;
-			local v371;
-			local v372;
-			local v373;
-			local v374;
-			while true do
-				if ((1 + 0) == v366) then
-					local FlatIdent_33B1E = 0;
-					while true do
-						if (2 == FlatIdent_33B1E) then
-							v369 = Instance.new("ImageButton");
-							v369.Name = "infobutton";
-							FlatIdent_33B1E = 3;
-						end
-						if (FlatIdent_33B1E == 3) then
-							v366 = 1377 - (1140 + 235);
-							break;
-						end
-						if (FlatIdent_33B1E == 0) then
-							v367.Size = UDim2.new((576 - 250) - (192 + (417 - 283)), 700 - (306 + 9), (4452 - 3176) - (316 + 960), 4 + 18 + 11 + 6);
-							v368.CornerRadius = UDim.new(0, 2 + 2 + (2 - 1));
-							FlatIdent_33B1E = 1;
-						end
-						if (FlatIdent_33B1E == 1) then
-							v368.Name = "butcorner";
-							v368.Parent = v367;
-							FlatIdent_33B1E = 2;
-						end
-					end
-				end
-				if (v366 == 2) then
-					v369.Parent = v367;
-					v369.BackgroundColor3 = Color3.fromRGB(236 + 13 + 6, (894 + 80) - (185 + 534), 806 - (83 + 468));
-					v369.BackgroundTransparency = (1859 - (33 + 19)) - (1202 + 604);
-					v369.Position = UDim2.new((0.0285714287 + 0) - (0 - 0), 0 + 0, (0.230769247 - 0) - 0, (0 + 0) - (689 - (586 + 103)));
-					v369.Size = UDim2.new((30 + 295) - (45 + 280), 61 - 41, (1488 - (1309 + 179)) + 0, (33 - 14) + 1 + 1);
-					v369.Image = "http://www.roblox.com/asset/?id=6294110112";
-					v366 = 3;
-				end
-				if (0 == v366) then
-					local FlatIdent_8BD63 = 0;
-					while true do
-						if (0 == FlatIdent_8BD63) then
-							v367 = Instance.new("Frame");
-							v368 = Instance.new("UICorner");
-							FlatIdent_8BD63 = 1;
-						end
-						if (FlatIdent_8BD63 == 1) then
-							v367.Name = v363;
-							v367.Parent = v185;
-							FlatIdent_8BD63 = 2;
-						end
-						if (FlatIdent_8BD63 == 2) then
-							v367.BackgroundColor3 = Color3.fromRGB(37 - 23, 87 + 27, 318 - 168);
-							v367.Position = UDim2.new(0.150118202, (0 - 0) + (609 - (295 + 314)), (0.000254076178 - 0) + 0, 0);
-							FlatIdent_8BD63 = 3;
-						end
-						if (FlatIdent_8BD63 == 3) then
-							v366 = 1963 - (1300 + 662);
-							break;
-						end
-					end
-				end
-				if ((12 - 8) == v366) then
-					local FlatIdent_6F0B1 = 0;
-					while true do
-						if (FlatIdent_6F0B1 == 1) then
-							v371.PlaceholderText = v363;
-							v371.PlaceholderColor3 = Color3.fromRGB(1179 - ((271 - 146) + (1211 - (115 + 187))), 145, (1603 + 490) - (1038 + 58 + (3357 - 2505)));
-							FlatIdent_6F0B1 = 2;
-						end
-						if (0 == FlatIdent_6F0B1) then
-							v371.Position = UDim2.new((1755 - (1178 + 577)) + 0, (942 + 870) - ((5122 - 3389) + (1444 - (851 + 554))), 0 + 0, (22.5 - 14) - 5);
-							v371.Font = Enum.Font.Roboto;
-							FlatIdent_6F0B1 = 1;
-						end
-						if (3 == FlatIdent_6F0B1) then
-							v366 = 1166 - (160 + 1001);
-							break;
-						end
-						if (FlatIdent_6F0B1 == 2) then
-							v371.Text = (v365 and v365) or "";
-							v371.TextXAlignment = Enum.TextXAlignment.Left;
-							FlatIdent_6F0B1 = 3;
-						end
-					end
-				end
-				if (v366 == 3) then
-					v185.CanvasSize = UDim2.fromOffset(v185.CanvasSize.X.Offset, v185.CanvasSize.Y.Offset + 17 + 2 + 22 + 9);
-					v370 = false;
-					v371 = Instance.new("TextBox", v367);
-					v371.Name = "box";
-					v371.BackgroundColor3 = Color3.fromRGB(26, 18 + (28 - 14), (369 - (237 + 121)) + (944 - (525 + 372)));
-					v371.Size = UDim2.new(0 - 0, v367.Size.X.Offset - ((272 - 189) - 38), (2053 - (96 + 46)) - ((1117 - (643 + 134)) + 568 + 1003), 78 - 45);
-					v366 = 4;
-				end
-				if (v366 == (22 - 16)) then
-					local FlatIdent_53D9 = 0;
-					while true do
-						if (FlatIdent_53D9 == 0) then
-							v373 = Instance.new("UIPadding", v371);
-							v373.PaddingLeft = UDim.new(236 - (46 + 183 + 7), 19 - 9);
-							FlatIdent_53D9 = 1;
-						end
-						if (FlatIdent_53D9 == 1) then
-							v374 = {};
-							v374.GetText = function(v483)
-								return v371.Text;
-							end;
-							FlatIdent_53D9 = 2;
-						end
-						if (FlatIdent_53D9 == 2) then
-							setmetatable(v374, {__index=function(v484, v485)
-								if (v485 == "Text") then
-									return v371.Text;
-								end
-							end,__newindex=function(v486, v487, v488)
-								if (v487 == "Text") then
-									v371.Text = v488;
-								end
-							end});
-							return v374;
-						end
-					end
-				end
-				if (v366 == (10 - 5)) then
-					local FlatIdent_674F6 = 0;
-					while true do
-						if (FlatIdent_674F6 == 2) then
-							v372 = Instance.new("UICorner", v371);
-							v372.CornerRadius = UDim.new(0 + 0, (1791 - 1274) - (409 + 103));
-							FlatIdent_674F6 = 3;
-						end
-						if (FlatIdent_674F6 == 0) then
-							v371.TextSize = 17;
-							v371.TextColor3 = Color3.fromRGB((834 - (316 + 403)) + 94 + 46, 701 - 446, 363 - 108);
-							FlatIdent_674F6 = 1;
-						end
-						if (FlatIdent_674F6 == 3) then
-							v366 = 6;
-							break;
-						end
-						if (FlatIdent_674F6 == 1) then
-							v371.TextTruncate = Enum.TextTruncate.AtEnd;
-							v369.MouseButton1Click:Connect(function()
-								local FlatIdent_18FAB = 0;
-								local v489;
-								local v490;
-								while true do
-									if (FlatIdent_18FAB == 1) then
-										while true do
-											if (v489 == (0 + 0)) then
-												v490 = 0;
-												while true do
-													if (v490 == ((0 - 0) + 0 + 0)) then
-														v370 = not v370;
-														if v370 then
-															v371.PlaceholderText = v364;
-														else
-															v371.PlaceholderText = v363;
-														end
-														break;
-													end
-												end
-												break;
-											end
-										end
-										break;
-									end
-									if (FlatIdent_18FAB == 0) then
-										v489 = 0;
-										v490 = nil;
-										FlatIdent_18FAB = 1;
-									end
-								end
-							end);
-							FlatIdent_674F6 = 2;
-						end
-					end
-				end
-			end
-		end;
-		v149.Tab = v150;
-		return v149;
-	end;
-	v19.Hide = function(v223)
-		v25.Visible = false;
-	end;
-	v19.Show = function(v225)
-		v25.Visible = true;
-	end;
-	v19.SetFooter = function(v227, v228)
-		v74.Text = v228;
-	end;
-	v19.NewCommandBar = function(v230, v231)
-		local v232 = {};
-		local v233 = Instance.new("Folder", ScreenGui);
-		local v234 = Instance.new("Frame", v233);
-		local v235 = ScreenGui.AbsoluteSize;
-		v234.Size = UDim2.new(95 - (51 + 44), v235.X - (v235.X / 2), 0 - 0, 50);
-		v234.Position = UDim2.new(0 + (0 - 0), v235.X / (1 + 1), 0 - 0, v235.Y - ((67 + 1300) - ((3277 - 2163) + (220 - (12 + 5)))));
-		ScreenGui:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-			local FlatIdent_821F1 = 0;
-			local v375;
-			while true do
-				if (0 == FlatIdent_821F1) then
-					v375 = 0;
-					while true do
-						if (v375 == (0 - 0)) then
-							local FlatIdent_4479E = 0;
-							while true do
-								if (1 == FlatIdent_4479E) then
-									v375 = 1;
-									break;
-								end
-								if (FlatIdent_4479E == 0) then
-									v235 = ScreenGui.AbsoluteSize;
-									v234.Size = UDim2.new(0, v235.X - (v235.X / (728 - ((486 - 258) + (1058 - 560)))), (0 - 0) + 0 + 0, 2023 - (1656 + 317));
-									FlatIdent_4479E = 1;
-								end
-							end
-						end
-						if (v375 == (1 + 0)) then
-							v234.Position = UDim2.new(0 + 0 + (0 - 0), v235.X / ((3272 - 2607) - ((528 - (5 + 349)) + 489)), 0, v235.Y - (237 - 187));
-							break;
-						end
-					end
-					break;
-				end
-			end
-		end);
-		v234.BackgroundColor3 = Color3.fromRGB((1369 - (266 + 1005)) - (40 + 20), 1950 - ((2832 - 2002) + (1415 - 340)), 1767 - (561 + 1135));
-		v234.BackgroundTransparency = 0.4 - 0;
-		v234.AnchorPoint = Vector2.new((1722.5 - 1198) - (303 + (1287 - (507 + 559))), 1269 - ((579 - 348) + (3210 - 2172)));
-		v234.Transparency = 1;
-		local v242 = Instance.new("UICorner", v234);
-		v242.CornerRadius = UDim.new(0, 10);
-		local v244 = Instance.new("TextBox", v234);
-		v244.Size = UDim2.new(388 - (212 + 176), v234.Size.X.Offset - ((918 - (250 + 655)) + 2), 0 - 0, (2099 - 897) - (171 + 991));
-		v244.Position = UDim2.new(0, 9 - 3, (1956 - (1869 + 87)) - 0, 16 - (34 - 24));
-		v244.PlaceholderText = v231;
-		v244.Font = Enum.Font.Ubuntu;
-		v244.TextSize = (1975 - (484 + 1417)) - (93 - 49);
-		v244.TextXAlignment = Enum.TextXAlignment.Left;
-		v244.BackgroundTransparency = (1 - 0) + (773 - (48 + 725));
-		v244.Text = "";
-		v244.TextColor3 = Color3.fromRGB((1458 - 565) - (1711 - 1073), 149 + 106, 735 - (1282 - 802));
-		v244.PlaceholderColor3 = Color3.fromRGB(44 + 112, 156, 46 + 110);
-		v244.Transparency = 854 - (152 + 701);
-		local v258 = Instance.new("ScrollingFrame", v233);
-		v258.Size = UDim2.new((1311 - (430 + 881)) - 0, v234.Size.X.Offset, 0 - (0 + 0), (2443 - (557 + 338)) - (33 + 78 + (3203 - 2066)));
-		v258.Position = UDim2.new(0 - 0, v235.X / ((429 - 267) - ((195 - 104) + 67)), 801 - (499 + 302), v234.Position.Y.Offset - (1166 - (39 + 827)), 0 - (0 - 0));
-		v258.Visible = true;
-		v258.BackgroundTransparency = (2 - 1) + (0 - 0);
-		v258.ScrollBarImageTransparency = 524 - (423 + (153 - 53));
-		v258.CanvasSize = UDim2.new(0 + 0 + 0, (0 - 0) - (0 + 0), (0 - 0) + (104 - (103 + 1)), (1425 - (475 + 79)) - ((704 - 378) + (1424 - 979)));
-		local v265 = Instance.new("UIListLayout", v258);
-		v265.FillDirection = Enum.FillDirection.Vertical;
-		v265.HorizontalAlignment = Enum.HorizontalAlignment.Left;
-		v265.VerticalAlignment = Enum.VerticalAlignment.Bottom;
-		v265.Padding = UDim.new(0 - (0 + 0), 33 - (16 + 2));
-		local v273 = Instance.new("UIAspectRatioConstraint", v265);
-		v273.AspectType = Enum.AspectType.ScaleWithParentSize;
-		v273.DominantAxis = Enum.DominantAxis.Height;
-		game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(v376)
-			if (v376 == ";") then
-				local FlatIdent_227B6 = 0;
-				local v417;
-				while true do
-					if (0 == FlatIdent_227B6) then
-						v417 = (1503 - (1395 + 108)) - (0 - 0);
-						while true do
-							if (v417 == 0) then
-								local FlatIdent_8E53E = 0;
-								local v507;
-								while true do
-									if (FlatIdent_8E53E == 0) then
-										v507 = 0;
-										while true do
-											if (v507 == (1204 - (7 + 1197))) then
-												local FlatIdent_5F12F = 0;
-												while true do
-													if (FlatIdent_5F12F == 0) then
-														coroutine.wrap(function()
-															local FlatIdent_60AAB = 0;
-															local v590;
-															local v591;
-															while true do
-																if (FlatIdent_60AAB == 1) then
-																	while true do
-																		if (v590 == (0 + 0)) then
-																			v591 = (1030 - (27 + 292)) - (530 + 181);
-																			while true do
-																				if (v591 == ((2581 - 1700) - ((782 - 168) + (1119 - 852)))) then
-																					tween(v234, TweenInfo.new(32.1 - (19 + (24 - 11)), Enum.EasingStyle.Linear), {BackgroundTransparency=((0.4 - 0) - (139 - (43 + 96)))});
-																					tween(v244, TweenInfo.new((0.1 - 0) - (0 - 0), Enum.EasingStyle.Linear), {TextTransparency=(0 - (0 + 0))});
-																					break;
-																				end
-																			end
-																			break;
-																		end
-																	end
-																	break;
-																end
-																if (FlatIdent_60AAB == 0) then
-																	v590 = 0 + 0;
-																	v591 = nil;
-																	FlatIdent_60AAB = 1;
-																end
-															end
-														end)();
-														task.wait();
-														FlatIdent_5F12F = 1;
-													end
-													if (FlatIdent_5F12F == 1) then
-														v507 = 1;
-														break;
-													end
-												end
-											end
-											if (v507 == 1) then
-												v417 = 1 + 0;
-												break;
-											end
-										end
-										break;
-									end
-								end
-							end
-							if (v417 == 1) then
-								v244:CaptureFocus();
-								break;
-							end
-						end
-						break;
-					end
-				end
-			end
-		end);
-		actualcmds = {};
-		v244:GetPropertyChangedSignal("Text"):Connect(function()
-			local v377 = (0 - 0) + 0;
-			while true do
-				if (v377 == (0 - 0)) then
-					local v476 = 0 + 0;
-					while true do
-						if (v476 == 1) then
-							v377 = 1 + 0;
-							break;
-						end
-						if (v476 == (0 - 0)) then
-							local FlatIdent_2C3E6 = 0;
-							while true do
-								if (FlatIdent_2C3E6 == 1) then
-									v476 = 1;
-									break;
-								end
-								if (FlatIdent_2C3E6 == 0) then
-									coroutine.wrap(function(v565)
-										local v566 = (0 + 0) - (0 + 0);
-										while true do
-											if (((3563 - (1414 + 337)) - (1293 + 519)) == v566) then
-												wait((1960 - (1642 + 298)) - 10);
-												if (v244.Text == v565) then
-													local v659 = 0 - 0;
-													local v660;
-													while true do
-														if (v659 == (0 - 0)) then
-															v660 = 0 - (0 - 0);
-															while true do
-																if (v660 == (0 - (0 + 0))) then
-																	local FlatIdent_6E9BC = 0;
-																	while true do
-																		if (1 == FlatIdent_6E9BC) then
-																			v660 = 1 + 0 + 0;
-																			break;
-																		end
-																		if (FlatIdent_6E9BC == 0) then
-																			tween(v234, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency=(1 + 0)});
-																			tween(v244, TweenInfo.new((972.1 - (357 + 615)) - 0, Enum.EasingStyle.Linear), {TextTransparency=((2 + 0) - (2 - 1))});
-																			FlatIdent_6E9BC = 1;
-																		end
-																	end
-																end
-																if (v660 == ((2 - 1) + 0 + 0)) then
-																	for v708, v709 in next, v258:GetChildren() do
-																		if v709:IsA("Frame") then
-																			v709.Visible = false;
-																		end
-																	end
-																	v244:ReleaseFocus();
-																	break;
-																end
-															end
-															break;
-														end
-													end
-												end
-												break;
-											end
-										end
-									end)(v244.Text);
-									for v567, v568 in pairs(v258:GetChildren()) do
-										if v568:IsA("GuiObject") then
-											local v592 = 0;
-											local v593;
-											local v594;
-											local v595;
-											while true do
-												if (v592 == (1 + 0)) then
-													v595 = nil;
-													while true do
-														if (v593 == 0) then
-															v594 = 0 + 0;
-															v595 = nil;
-															v593 = 1;
-														end
-														if (1 == v593) then
-															while true do
-																if (v594 == ((1301 - (384 + 917)) - 0)) then
-																	v595 = v568.Name:lower();
-																	if ((v244.Text ~= "") and (v595:match(v244.Text:lower()) or (v244.Text == "cmds"))) then
-																		v568.Visible = true;
-																	else
-																		v568.Visible = false;
-																	end
-																	break;
-																end
-															end
-															break;
-														end
-													end
-													break;
-												end
-												if (v592 == (697 - (128 + 569))) then
-													local FlatIdent_86FCC = 0;
-													while true do
-														if (FlatIdent_86FCC == 0) then
-															v593 = 1543 - (1407 + 136);
-															v594 = nil;
-															FlatIdent_86FCC = 1;
-														end
-														if (FlatIdent_86FCC == 1) then
-															v592 = 1;
-															break;
-														end
-													end
-												end
-											end
-										end
-									end
-									FlatIdent_2C3E6 = 1;
-								end
-							end
-						end
-					end
-				end
-				if (v377 == ((1888 - (687 + 1200)) + 0)) then
-					v258.CanvasPosition = Vector2.new((1710 - (556 + 1154)) + (0 - 0), v258.CanvasSize.Y.Offset);
-					break;
-				end
-			end
-		end);
-		v244.MouseEnter:Connect(function()
-			local FlatIdent_57195 = 0;
-			local v378;
-			local v379;
-			while true do
-				if (FlatIdent_57195 == 1) then
-					while true do
-						if (v378 == (95 - (9 + 86))) then
-							v379 = 421 - (275 + 146);
-							while true do
-								if (((179 + 917) - ((773 - (29 + 35)) + (1715 - 1328))) == v379) then
-									tween(v234, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {BackgroundTransparency=(0.4 - 0)});
-									tween(v244, TweenInfo.new((8202.1 - 6344) - (439 + 234 + 1185), Enum.EasingStyle.Linear), {TextTransparency=0});
-									break;
-								end
-							end
-							break;
-						end
-					end
-					break;
-				end
-				if (FlatIdent_57195 == 0) then
-					v378 = 0;
-					v379 = nil;
-					FlatIdent_57195 = 1;
-				end
-			end
-		end);
-		v244.FocusLost:Connect(function(v380)
-			local v381 = 0;
-			local v382;
-			while true do
-				if (v381 == 0) then
-					v382 = 1012 - (53 + 959);
-					while true do
-						if (v382 == (409 - (312 + 96))) then
-							tween(v234, TweenInfo.new((0.1 - 0) - (285 - (147 + 138)), Enum.EasingStyle.Linear), {BackgroundTransparency=(3 - (901 - (813 + 86)))});
-							tween(v244, TweenInfo.new(0.1 + 0, Enum.EasingStyle.Linear), {TextTransparency=1});
-							break;
-						end
-						if (v382 == ((0 - 0) - (492 - (18 + 474)))) then
-							local FlatIdent_42746 = 0;
-							local v534;
-							local v535;
-							while true do
-								if (FlatIdent_42746 == 0) then
-									v534 = 0 + 0;
-									v535 = nil;
-									FlatIdent_42746 = 1;
-								end
-								if (FlatIdent_42746 == 1) then
-									while true do
-										if ((0 - 0) == v534) then
-											v535 = 0;
-											while true do
-												if (v535 == 0) then
-													local FlatIdent_3E4CE = 0;
-													while true do
-														if (FlatIdent_3E4CE == 1) then
-															v535 = 1 - 0;
-															break;
-														end
-														if (FlatIdent_3E4CE == 0) then
-															if v380 then
-																local FlatIdent_82627 = 0;
-																local v685;
-																local v686;
-																local v687;
-																while true do
-																	if (FlatIdent_82627 == 1) then
-																		v687 = nil;
-																		while true do
-																			if (v685 == (303 - (121 + 182))) then
-																				local v701 = 0 + 0;
-																				while true do
-																					if (v701 == (1240 - (988 + 252))) then
-																						local FlatIdent_64015 = 0;
-																						while true do
-																							if (FlatIdent_64015 == 1) then
-																								v701 = 1 + 0;
-																								break;
-																							end
-																							if (FlatIdent_64015 == 0) then
-																								v686 = {};
-																								for v716 in string.gmatch(v244.Text, "[^ ]+") do
-																									table.insert(v686, v716);
-																								end
-																								FlatIdent_64015 = 1;
-																							end
-																						end
-																					end
-																					if (v701 == (1 + 0)) then
-																						v685 = (1971 - (49 + 1921)) + 0;
-																						break;
-																					end
-																				end
-																			end
-																			if (v685 == ((891 - (223 + 667)) + (52 - (51 + 1)))) then
-																				v687 = table.remove(v686, 1 - (0 - 0));
-																				for v705, v706 in next, actualcmds do
-																					if v706[v687] then
-																						actualcmds[v705][v687](v686);
-																					end
-																				end
-																				break;
-																			end
-																		end
-																		break;
-																	end
-																	if (FlatIdent_82627 == 0) then
-																		v685 = 1086 - (860 + 226);
-																		v686 = nil;
-																		FlatIdent_82627 = 1;
-																	end
-																end
-															end
-															for v679, v680 in next, v258:GetChildren() do
-																if v680:IsA("Frame") then
-																	v680.Visible = false;
-																end
-															end
-															FlatIdent_3E4CE = 1;
-														end
-													end
-												end
-												if ((1126 - (146 + 979)) == v535) then
-													v382 = 1 + 0;
-													break;
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-					end
-					break;
-				end
-			end
-		end);
-		v232.AddCommand = function(v383, v384, v385, v386, v387)
-			local v388 = 605 - (311 + 294);
-			local v389;
-			local v390;
-			local v391;
-			local v392;
-			local v393;
-			local v394;
-			while true do
-				if (v388 == (0 - 0)) then
-					local FlatIdent_56EE2 = 0;
-					while true do
-						if (FlatIdent_56EE2 == 0) then
-							v389 = 0 + 0 + 0;
-							v390 = nil;
-							FlatIdent_56EE2 = 1;
-						end
-						if (1 == FlatIdent_56EE2) then
-							v388 = 1444 - (496 + 947);
-							break;
-						end
-					end
-				end
-				if (v388 == 3) then
-					while true do
-						if (v389 == (5 - (1360 - (1233 + 125)))) then
-							local FlatIdent_6B54C = 0;
-							while true do
-								if (FlatIdent_6B54C == 0) then
-									v392.Font = Enum.Font.SourceSans;
-									v392.TextSize = (24 + 34) - (26 + 2);
-									FlatIdent_6B54C = 1;
-								end
-								if (FlatIdent_6B54C == 2) then
-									v389 = (1075 + 212) - ((2544 - (504 + 1000)) + 164 + 79);
-									break;
-								end
-								if (FlatIdent_6B54C == 1) then
-									v392.TextXAlignment = Enum.TextXAlignment.Left;
-									v392.BackgroundTransparency = (358 + 1523) - ((2091 - (963 + 682)) + 1434);
-									FlatIdent_6B54C = 2;
-								end
-							end
-						end
-						if (v389 == (11 - (7 + 0))) then
-							local FlatIdent_39734 = 0;
-							local v542;
-							local v543;
-							while true do
-								if (FlatIdent_39734 == 1) then
-									while true do
-										if (v542 == (0 + 0)) then
-											v543 = 0 - 0;
-											while true do
-												if (v543 == (0 + 0)) then
-													local FlatIdent_47F4B = 0;
-													while true do
-														if (FlatIdent_47F4B == 0) then
-															v392.TextColor3 = Color3.fromRGB(2102 - (326 + 233 + 1288), 437 - (156 + 26), (1260 + 926) - (609 + (2067 - 745)));
-															v393 = Instance.new("TextLabel", v390);
-															FlatIdent_47F4B = 1;
-														end
-														if (FlatIdent_47F4B == 1) then
-															v543 = 165 - (149 + 15);
-															break;
-														end
-													end
-												end
-												if (v543 == 1) then
-													local FlatIdent_739F3 = 0;
-													while true do
-														if (FlatIdent_739F3 == 0) then
-															v393.Size = UDim2.new(960 - (890 + 70), v390.Size.X.Offset - (132 - (39 + 78)), (936 - (14 + 468)) - ((28 - 15) + (1232 - 791)), 16 + 14);
-															v393.Position = UDim2.new((0 + 0) - 0, (6 + 20) - 16, (0 + 0) - (0 + 0), (3 - 1) + 28 + 0);
-															FlatIdent_739F3 = 1;
-														end
-														if (FlatIdent_739F3 == 1) then
-															v543 = 6 - 4;
-															break;
-														end
-													end
-												end
-												if ((1 + 1) == v543) then
-													v389 = 18 - 13;
-													break;
-												end
-											end
-											break;
-										end
-									end
-									break;
-								end
-								if (FlatIdent_39734 == 0) then
-									v542 = 0;
-									v543 = nil;
-									FlatIdent_39734 = 1;
-								end
-							end
-						end
-						if (v389 == ((55 - (12 + 39)) + 5)) then
-							table.insert(actualcmds, {[v384]=v387});
-							break;
-						end
-						if (v389 == (4 + 4)) then
-							local FlatIdent_65E70 = 0;
-							local v544;
-							while true do
-								if (FlatIdent_65E70 == 0) then
-									v544 = 0 + 0;
-									while true do
-										if (v544 == 1) then
-											local FlatIdent_97B3D = 0;
-											while true do
-												if (FlatIdent_97B3D == 1) then
-													v544 = 2 + 0;
-													break;
-												end
-												if (FlatIdent_97B3D == 0) then
-													v394.TextColor3 = Color3.fromRGB((433 - 293) + (409 - 294), 255, (139 + 329) - (113 + 100));
-													v258.CanvasSize = UDim2.fromOffset((0 - 0) + 0, v258.CanvasSize.Y.Offset + 130);
-													FlatIdent_97B3D = 1;
-												end
-											end
-										end
-										if (0 == v544) then
-											v394.TextXAlignment = Enum.TextXAlignment.Left;
-											v394.BackgroundTransparency = (9 - 7) - 1;
-											v544 = 1711 - (1596 + 114);
-										end
-										if ((4 - 2) == v544) then
-											v389 = (719 - (164 + 549)) + (1441 - (1059 + 379));
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v389 == ((2 - 0) + 0 + 0)) then
-							local FlatIdent_4FE0C = 0;
-							while true do
-								if (FlatIdent_4FE0C == 1) then
-									v392.Position = UDim2.new(0 + 0, (45 - 17) - (738 - (254 + 466)), (560 - (544 + 16)) + 0, 0);
-									v392.Text = "Command:  " .. v384;
-									FlatIdent_4FE0C = 2;
-								end
-								if (FlatIdent_4FE0C == 0) then
-									v392 = Instance.new("TextLabel", v390);
-									v392.Size = UDim2.new(0 + 0 + 0, v390.Size.X.Offset - (407 - (145 + 247)), 0 + 0 + 0, (214 + 249) - ((453 - 300) + 54 + 226));
-									FlatIdent_4FE0C = 1;
-								end
-								if (FlatIdent_4FE0C == 2) then
-									v389 = (5 - 3) + (629 - (294 + 334));
-									break;
-								end
-							end
-						end
-						if (v389 == (0 + (253 - (236 + 17)))) then
-							local v548 = 0 + 0;
-							while true do
-								if ((1 + 0) == v548) then
-									local FlatIdent_773DC = 0;
-									while true do
-										if (FlatIdent_773DC == 1) then
-											v548 = 2 + 0;
-											break;
-										end
-										if (FlatIdent_773DC == 0) then
-											v390.BackgroundColor3 = Color3.fromRGB(57 - 19, (105 - 77) + (80 - 63), 37 + 34);
-											v390.Position = UDim2.new((550 + 117) - ((883 - (413 + 381)) + 25 + 553), (0 - 0) + 0, (0 - 0) - 0, (3019 - (582 + 1388)) - ((974 - 402) + 477));
-											FlatIdent_773DC = 1;
-										end
-									end
-								end
-								if (v548 == (364 - (326 + 38))) then
-									local FlatIdent_41EB8 = 0;
-									while true do
-										if (FlatIdent_41EB8 == 1) then
-											v548 = 1 - 0;
-											break;
-										end
-										if (FlatIdent_41EB8 == 0) then
-											v390 = Instance.new("Frame", v258);
-											v390.Size = UDim2.new(0 + 0, v258.Size.X.Offset, 0, (257 - 170) + 33);
-											FlatIdent_41EB8 = 1;
-										end
-									end
-								end
-								if (v548 == 2) then
-									v389 = 621 - (47 + 573);
-									break;
-								end
-							end
-						end
-						if (v389 == (1 + 0 + 0)) then
-							local FlatIdent_2A75 = 0;
-							local v549;
-							while true do
-								if (FlatIdent_2A75 == 0) then
-									v549 = 0 - 0;
-									while true do
-										if (v549 == (1 - 0)) then
-											local FlatIdent_7B4B6 = 0;
-											while true do
-												if (FlatIdent_7B4B6 == 1) then
-													v549 = 1009 - (564 + 443);
-													break;
-												end
-												if (FlatIdent_7B4B6 == 0) then
-													v391 = Instance.new("UICorner", v390);
-													v391.CornerRadius = UDim.new((1664 - (1269 + 395)) + (492 - (76 + 416)), (444 - (319 + 124)) + (9 - 5));
-													FlatIdent_7B4B6 = 1;
-												end
-											end
-										end
-										if (v549 == (0 - 0)) then
-											v390.Name = v384;
-											v390.Visible = false;
-											v549 = 1;
-										end
-										if (v549 == 2) then
-											v389 = 2;
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if (v389 == ((551 - (337 + 121)) - ((245 - 161) + (6 - 4)))) then
-							local v550 = 1911 - (1261 + 650);
-							local v551;
-							while true do
-								if (v550 == 0) then
-									v551 = 0 + 0;
-									while true do
-										if (v551 == (1 - 0)) then
-											local FlatIdent_900D9 = 0;
-											while true do
-												if (FlatIdent_900D9 == 0) then
-													v394.Font = Enum.Font.SourceSans;
-													v394.TextSize = (1839 - (772 + 1045)) + 2 + 6;
-													FlatIdent_900D9 = 1;
-												end
-												if (FlatIdent_900D9 == 1) then
-													v551 = 146 - (102 + 42);
-													break;
-												end
-											end
-										end
-										if (v551 == (1844 - (1524 + 320))) then
-											local FlatIdent_67611 = 0;
-											while true do
-												if (FlatIdent_67611 == 1) then
-													v551 = 349 - (136 + 212);
-													break;
-												end
-												if (FlatIdent_67611 == 0) then
-													v394.Position = UDim2.new(1270 - (1049 + 221), (172 - (18 + 138)) - (14 - 8), 1102 - (67 + 1035), 60);
-													v394.Text = "Description:  " .. v386;
-													FlatIdent_67611 = 1;
-												end
-											end
-										end
-										if (v551 == (8 - 6)) then
-											v389 = 850 - (399 + 98 + 345);
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-						if ((1 + 0 + 4) == v389) then
-							local FlatIdent_69CC8 = 0;
-							while true do
-								if (FlatIdent_69CC8 == 0) then
-									if (type(v385) == "table") then
-										v393.Text = "Arguments:  " .. table.concat(v385, ", ");
-									else
-										v393.Text = "Arguments:  " .. v385;
-									end
-									v393.Font = Enum.Font.SourceSans;
-									FlatIdent_69CC8 = 1;
-								end
-								if (FlatIdent_69CC8 == 2) then
-									v389 = (2943 - (240 + 1364)) - (605 + (1810 - (1050 + 32)));
-									break;
-								end
-								if (FlatIdent_69CC8 == 1) then
-									v393.TextSize = 6 + 24;
-									v393.TextXAlignment = Enum.TextXAlignment.Left;
-									FlatIdent_69CC8 = 2;
-								end
-							end
-						end
-						if (v389 == (5 + (3 - 2))) then
-							local FlatIdent_91F32 = 0;
-							local v557;
-							while true do
-								if (FlatIdent_91F32 == 0) then
-									v557 = 0;
-									while true do
-										if (v557 == (1 + 0)) then
-											local FlatIdent_14BC6 = 0;
-											while true do
-												if (0 == FlatIdent_14BC6) then
-													v394 = Instance.new("TextLabel", v390);
-													v394.Size = UDim2.new((1055 - (331 + 724)) + 0 + 0, v390.Size.X.Offset - (659 - (269 + 375)), 725 - (267 + 458), (26 + 57) - (101 - 48));
-													FlatIdent_14BC6 = 1;
-												end
-												if (FlatIdent_14BC6 == 1) then
-													v557 = 2;
-													break;
-												end
-											end
-										end
-										if (v557 == (818 - (667 + 151))) then
-											local FlatIdent_78D43 = 0;
-											while true do
-												if (FlatIdent_78D43 == 0) then
-													v393.BackgroundTransparency = (1498 - (1410 + 87)) - (1897 - (1504 + 393));
-													v393.TextColor3 = Color3.fromRGB((32 - 20) + 243, 942 - (1782 - 1095), 1051 - (461 + 335));
-													FlatIdent_78D43 = 1;
-												end
-												if (1 == FlatIdent_78D43) then
-													v557 = 1 + 0;
-													break;
-												end
-											end
-										end
-										if (v557 == (1763 - (1730 + 31))) then
-											v389 = 6 + (1668 - (728 + 939));
-											break;
-										end
-									end
-									break;
-								end
-							end
-						end
-					end
-					break;
-				end
-				if (v388 == 2) then
-					local FlatIdent_694C5 = 0;
-					while true do
-						if (FlatIdent_694C5 == 0) then
-							v393 = nil;
-							v394 = nil;
-							FlatIdent_694C5 = 1;
-						end
-						if (FlatIdent_694C5 == 1) then
-							v388 = 10 - 7;
-							break;
-						end
-					end
-				end
-				if (v388 == (1 - 0)) then
-					v391 = nil;
-					v392 = nil;
-					v388 = 4 - 2;
-				end
-			end
-		end;
-		return v232;
-	end;
-	return v19;
-end;
-return module;
+			argss.Font = Enum.Font.SourceSans
+			argss.TextSize = 30;
+			argss.TextXAlignment = Enum.TextXAlignment.Left
+			argss.BackgroundTransparency = 1
+			argss.TextColor3 = Color3.fromRGB(255,255,255)
+			local descc = Instance.new('TextLabel', thinggy)
+			descc.Size = UDim2.new(0, thinggy.Size.X.Offset-15, 0, 30)
+			descc.Position = UDim2.new(0,10,0,60)
+			descc.Text = 'Description:  '..description
+			descc.Font = Enum.Font.SourceSans
+			descc.TextSize = 30
+			descc.TextXAlignment = Enum.TextXAlignment.Left
+			descc.BackgroundTransparency = 1
+			descc.TextColor3 = Color3.fromRGB(255,255,255)
+			cmds.CanvasSize = UDim2.fromOffset(0, cmds.CanvasSize.Y.Offset+130)
+			table.insert(actualcmds, {[name] = callback})
+		end
+		return cmd
+	end
+    return window
+end
+return module
