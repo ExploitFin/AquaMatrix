@@ -362,8 +362,8 @@ function tab:NewSpace()
     space.BackgroundColor3 = Color3.fromRGB(28, 93, 152)
     space.BackgroundTransparency = 1
     space.TextTransparency = 1
-	    space.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
-    space.Size = UDim2.new(0, 385, 0, 39)
+    space.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
+    space.Size = UDim2.new(0, 385, 0, 30)  -- Adjusted height to 30
     space.Font = Enum.Font.Roboto
     space.Text = ""
     space.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -378,7 +378,7 @@ function tab:NewSpace()
         ScrollingFrame.CanvasSize.X.Scale,
         ScrollingFrame.CanvasSize.X.Offset,
         ScrollingFrame.CanvasSize.Y.Scale,
-        ScrollingFrame.CanvasSize.Y.Offset + 50
+        ScrollingFrame.CanvasSize.Y.Offset + 30  -- Adjusted to match the new height
     )
 
     return space
