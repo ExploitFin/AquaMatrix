@@ -401,7 +401,7 @@ function module:New(name)
 
                 button.Name = name
                 button.Parent = ScrollingFrame
-                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
+                button.BackgroundColor3 = Color3.fromRGB(6, 64, 108)
     
                 button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 button.Size = UDim2.new(0, 385, 0, 39)
@@ -467,7 +467,7 @@ function module:New(name)
 
                 button.Name = name
                 button.Parent = ScrollingFrame
-                button.BackgroundColor3 = Color3.fromRGB(14, 114, 150)
+                button.BackgroundColor3 = Color3.fromRGB(0, 74, 113)
     
                 button.Position = UDim2.new(0.150118202, 0, 0.000254076178, 0)
                 button.Size = UDim2.new(0, 385, 0, 39)
